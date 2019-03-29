@@ -6,7 +6,7 @@ code {
 code {
   background-color: $grey-3;
   border-radius: 3px;
-  color: $code-color;
+  color: #3B3228;
   font-size: 85%;
   padding: .25em .5em;
 }
@@ -23,7 +23,6 @@ pre code {
 }
 
 .highlight {
-  background-color: $grey-3;
   border-radius: 3px;
   line-height: 1.4;
   margin: 0 0 1rem;
