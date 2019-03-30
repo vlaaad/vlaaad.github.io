@@ -1,35 +1,28 @@
 # Site settings
-title:          vlaaad's dev notes
-description:    ""
-baseurl:        ""
-url:            ""
-
-# Author
-author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+title: (:dev-notes vlaaad)
+description: ""
+baseurl: ""
+url: ""
 
 # Build settings
-markdown:       kramdown
+markdown: kramdown
 include:
   - _pages
 
 # Assets
 sass:
-  sass_dir:     _sass
-  style:        compressed
+  sass_dir: _sass
+  style: compressed
 
 # Gems
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-seo-tag
-  # - jemoji #Uncomment this to allow emoji in your post
 
 # Permalinks
-permalink:      /:year-:month-:day/:title
-paginate:       5
+permalink: /:year-:month-:day/:title
+paginate: 5
 
 # Excludes
 exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]
