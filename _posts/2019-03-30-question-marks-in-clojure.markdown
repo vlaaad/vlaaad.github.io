@@ -66,4 +66,4 @@ I think an exception here could be a keyword that identifies predicate function:
 
 Destructuring it will give you a `?`-ending predicate that you can call and get an answer, which makes sense.
 
-What do you think?
+What do you think? Discuss [on reddit](https://www.reddit.com/r/Clojure/comments/b7db39/question_marks_in_clojure/).
