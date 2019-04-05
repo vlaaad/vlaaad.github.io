@@ -103,4 +103,4 @@ This change introduces a lifecycle which is reusable, works with both instances 
 
 Yes, it took me an hour instead of a minute, but in the end you can always safely update to latest version of cljfx, and it will work the same or even better.
 
-What do you think?
+What do you think? Discuss [on reddit](https://www.reddit.com/r/Clojure/comments/b9rhk2/growing_cljfx/).
