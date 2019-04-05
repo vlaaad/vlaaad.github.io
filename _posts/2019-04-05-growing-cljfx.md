@@ -4,7 +4,7 @@ title: "Growing cljfx"
 description: "When releasing cljfx, I decided to opt in accretion / relaxation / fixation approach to growing an open source project, and now I want to share why I did it and how it's been so far"
 date: 2019-04-05
 ---
-When releasing [cljfx](https://github.com/cljfx/cljfx), I decided to opt in accretion / relaxation / fixation approach to growing an open source project, and now I want to share why I did it and how it's been so far.
+When releasing [cljfx](https://github.com/cljfx/cljfx), a declarative, functional and extensible wrapper of JavaFX inspired by better parts of react and re-frame, I decided to opt in accretion / relaxation / fixation approach to growing an open source project, and now I want to share why I did it and how it's been so far.
 
 ## Broken Versioning?
 
