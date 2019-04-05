@@ -84,7 +84,7 @@ Once extension lifecycles got released, it became possible to describe toggle gr
 Described like that, same instance of `ToggleGroup` will be reused no matter what the arguments to `radio-group` function are.
 The problem is, to make `:toggle-group` prop recognize maps with `:fx/type` key, we have to use `dynamic` lifecycle instead of `scalar`, and it does not support instances. It should not support instances, because it is idiomatic in cljfx to describe everything with maps, and if you want instance, there is a special extension lifecycle for that: `fx/ext-instance-factory`, and you still describe your instance with a map.
 
-So I ask myself: will this change provide more? Will it require less? And it turns out replacing `scalar` with `dynamic` will result in opposite: *requiring more* and *providing less*. Code will require more, because providing instance to `:toggle-group` won't be enough, it will have to be wrapped in a map. Code will provide less, because for current input it will throw in exception.
+So I ask myself: will replacing `scalar` lifecycle with `dynamic` provide more? Will it require less? And it turns out replacing it will result in the opposite: *requiring more* and *providing less*. It will require more, because providing instance to `:toggle-group` won't be enough, it will have to be wrapped in a map. Code will provide less, because for current input it will throw in exception.
 
 So I made a new lifecycle instead, one that will check if description is instance of a `ToggleGroup`, and then either use `scalar` or `dynamic`, and currently `ToggleButton`'s prop map looks like that:
 
