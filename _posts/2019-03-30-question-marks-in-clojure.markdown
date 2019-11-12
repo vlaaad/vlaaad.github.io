@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Question marks in&nbsp;Clojure"
+title: "Question marks in&nbsp;Clojure"
 description: "Dos and don'ts about using question mark suffix for naming things in Clojure"
 date: 2019-03-30
+permalink: /2019-03-30/question-marks-in-clojure
 ---
 
 Clojure's flexible syntax allows special characters such `?`, `!` or `*` to be a part of variable names, which gives ability to enhance symbols with additional meaning, but I regularly see that `?`-suffixes get misused, so I decided to make a list of dos and don'ts regarding question marks to clear that up.
