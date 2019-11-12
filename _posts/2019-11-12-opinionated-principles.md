@@ -5,7 +5,7 @@ description: "Break the chains of OCD"
 date: 2019-11-12
 ---
 
-Too often I find myself carried away by trying to do something The Correct Way™ without really thinking if following such a way really does benefit me even where it gets clunky. I see that everywhere around me: people talk about not going into extremes in some area and then blindly do it in another, [myself included of course](/2019-03-30/question-marks-in-clojure).
+Too often I find myself carried away by trying to do something The Correct Way™ without thinking if following such a way really does benefit me even where it gets clunky. I see that everywhere around me: people talk about not going into extremes in some area and then blindly do it in another, [myself included of course](/2019-03-30/question-marks-in-clojure).
 
 And then I look at Clojure's source code and... Don't you find it's style puzzling? [Java](https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/RT.java) is formatted really weird, and all Clojure core namespaces are [incredibly inconsistent](https://github.com/clojure/clojure/blob/master/src/clj/clojure/stacktrace.clj#L70-L85) in their indentation. 
 
