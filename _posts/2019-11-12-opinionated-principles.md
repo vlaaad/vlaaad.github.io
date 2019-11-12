@@ -40,6 +40,6 @@ Do we have to disregard any conventions from now on? No! This blog post is the s
 
 ## Summary
 
-There is a good reason some principles exists: they capture valuable information about their domain to reduce cognitive load and aid with taking the right turns. It's just so easy to fall into trap of codifying arbitrary patterns into such principles. I would recommend to ask yourself on decision points during programming: does it really matters, or do I do it to satisfy my own OCD?
+There is a good reason some principles exist: they capture valuable information about their domain to reduce cognitive load and aid with taking the right turns. It's just so easy to fall into trap of codifying arbitrary patterns into such principles. I would recommend to ask yourself on decision points during programming: does it really matters, or do I do it to satisfy my own OCD?
 
 What do you think? Discuss [on reddit](https://www.reddit.com/r/Clojure/comments/dvfuo4/clojure_dont_buy_into_principles_and_opinions/).
