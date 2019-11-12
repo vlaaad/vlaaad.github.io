@@ -4,7 +4,6 @@ title: "Clojure Don't: Buy Into Principles and Opinions"
 description: "Break the chains of OCD"
 date: 2019-11-12
 ---
-## Highly-opinionated for what?
 
 Too often I find myself carried away by trying to do something The Correct Way™ without really thinking if following such a way really does benefit me even where it gets clunky. I see that everywhere around me: people talk about not going into extremes in some area and then blindly do it in another, [myself included of course](/2019-03-30/question-marks-in-clojure).
 
