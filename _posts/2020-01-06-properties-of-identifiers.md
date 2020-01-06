@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Properties of Identifiers"
-description: "What constitutes a good id? When?"
+description: "What constitutes a good ID? When?"
 ---
 
 ## Properties 
@@ -47,15 +47,17 @@ Some other times, you need just a thing, but it will still have some properties 
 
 ## Identifiers
 
-> Identifier — a name that identifies (that is, labels the identity of) either a unique object or a unique class of objects
+> Identifier — a name that identifies (that is, labels the identity of) either an unique object or an unique class of objects
 
 So, an identifier is a label of something else, a way to refer to something without being that something. In programming, the main property of an identifier is being able to retrieve (or assert) some information from a system for the entity identified by this identifier. After that, there are different kinds of identifiers with various properties that I came across in my experience.
 
 ### Auto-incremented integers
 
-This kind of ID is well-known in traditional databases that usually allow generating ids when inserting new rows into tables. What properties such IDs have? First of all, they are created for you automatically, so you don't have to worry about that. 
+This kind of ID is well-known in traditional databases that usually allow generating IDs when inserting new rows into tables. What properties such IDs have? First of all, they are created for you automatically, so you don't have to worry about them. 
   
-They are *meaningless* in a sense that they don't refer to some attribute of an entity they identify. This is sometimes very useful, for example, using phone numbers is identifiers is meaningful (describes some real-world entity belonging to a user), but might become problematic (user changes a phone number, or has many phone numbers) and can be a security risk. *Ordered* nature of IDs allows users to know who registered first (will have smaller number). 
+They are *meaningless* in a sense that they don't refer to some attribute of an entity they identify. This is sometimes very useful, for example, using phone numbers as identifiers is meaningful (describes some real-world entity belonging to a user), but might become problematic (user changes a phone number, or has many phone numbers) and can be a security risk. 
+
+*Ordered* nature of IDs allows users to know who registered first (will have smaller number). 
   
 Since auto-incremented IDs are *monotonically* increasing, with lack of authentication/rate-limiting it might be easy to scrape publicly available information about users just by going through all numbers after 1 until users exist. 
   
@@ -74,7 +76,7 @@ This is a less widespread type of identifier, mostly because of a constraint it 
 
 It's imposed constraint (which is also a property!) is immutability: content hash identifies a value that will never change because the changed value will have a different hash identifier. Most relatable examples of such identifiers are SHA1 hashes that Git uses for objects it stores, be it commits, files or file trees. This hash looks like this: `985a2882a8f7d1ea551ebe09726cee3c12d34039`. SHA1 is 160 bit — less chance of collision than with UUIDs (don't quote me on this though — SHA1 and UUIDs are produced in different ways, so actual collision chances might vary). It's probably a good idea to use SHA2 (256 bit) nowadays that google managed to produce a hash collision for SHA1 with only 6500 years of CPU time. 
 
-Hashes are meaningful in the sense that they capture all available information about a thing they identify, but being one-way transformation, they can't be a security risk. 
+Hashes are meaningful in the sense that they capture all available information about a thing they identify, but being one-way transformation, they don't allow extracting this information back. Because of this property content hashes are usually used for password storage, where it is more secure to persist a salted hash of a password and check it by salting a submitted password during login attempt then to store password itself.
 
 Content hashes are great for data distribution: one system can ask another if it has content with a particular hash, and then verify downloaded content by checking it's hash — torrents work on content hashes, for example.
 
