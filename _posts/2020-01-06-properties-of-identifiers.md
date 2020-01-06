@@ -82,4 +82,4 @@ Content hashes are great for data distribution: one system can ask another if it
 
 Usually used to identify web pages, they can also be used to identify other stuff. [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework), for example, uses URLs to describe both entities and their attributes. Even though RDF is not very popular today, using URLs to identify information is still an interesting approach because, in addition to being an identifier *of* something, it also has contains information *how* to get something. For example, combining this property with the assumption that identified entity is immutable might be useful for making a package manager: using URLs to commit hashes as dependency coordinates (like `clj` does) makes it easy to make a stable and vibrant ecosystem without central repositories ensuring immutability of artifacts.
 
-What do you think?
+What do you think? Discuss [on reddit](https://www.reddit.com/r/Clojure/comments/el1lkt/properties_of_identifiers/).
