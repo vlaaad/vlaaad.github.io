@@ -45,4 +45,4 @@ If you want it to work with `apply`, you will also need to override `applyTo` me
 
 I've felt the need for transparent functions twice, and both times later I decided to achieve my goals using other means, so it might be a sign of some issues with the approach taken. That's why I decided against writing a helper library to reduce [boilerplate](https://github.com/reagent-project/reagent/blob/8de886d8b15132070d66bff86796e11e6f51536e/src/reagent/impl/util.cljs#L62-L115) that might be involved. Hopefully, you'll find it useful at least as food for thought.
 
-What do you think?
+What do you think? Discuss [on reddit](https://www.reddit.com/r/Clojure/comments/es2gib/transparent_functions_with_equality_semantics/).
