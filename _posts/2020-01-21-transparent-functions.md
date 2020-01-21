@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Transparent functions with equality semantics"
+title: "Transparent Functions with Equality Semantics"
 description: "You don't have them. Do you need them? How do you get them?"
 ---
 
