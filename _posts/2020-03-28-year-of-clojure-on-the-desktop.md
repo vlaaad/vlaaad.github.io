@@ -49,4 +49,4 @@ What can be a better example of what is possible with Clojure on the desktop tha
 
 I think JVM has a sweet spot for desktop apps that lies between interactive forms / [typesetting](https://www.arp242.net/webui.html) that web is good at and extremely resource-intensive apps like games / 3D modeling software that need to be written in something lower-level. In the middle of that sweet spot, there is Clojure and cljfx that allow developing UI interactively with instant feedback — in the live app, not some static UI builder. It's not all rainbows: JavaFX has some issues here and there, but it's nice nonetheless. [Editors for game engines](https://defold.com/) can be written in Clojure. [Advanced visual REPLs](https://github.com/vlaaad/reveal) can be written in Clojure. Give it a try.
 
-What do you think?
+What do you think? Discuss [on reddit](https://www.reddit.com/r/Clojure/comments/fqimas/year_of_clojure_on_the_desktop/).
