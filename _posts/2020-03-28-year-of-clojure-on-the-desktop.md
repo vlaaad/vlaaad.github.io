@@ -43,7 +43,9 @@ The problem of compiling a javascript app with various dependencies has many dif
 
 Thankfully, Java 14 that was released earlier this year includes a new tool called [jpackage](https://openjdk.java.net/jeps/343) that deals with packaging self-contained applications. It does all the heavy lifting needed to produce a platform-specific application package. Using jpackage, it's now easy to create an app from the jar, and all that's left to do is upload it to a server to allow users to download and install it.
 
-What can be a better example of what is possible with Clojure on the desktop than a simple sample application? I made [Hacker News Reader](https://github.com/cljfx/hn) app that shows how cljfx, cljfx/css and jpackage can be used together to create an installable application. You can even [download it](https://github.com/cljfx/hn/releases) and give it a try — packages are built using Github Actions.
+What can be a better example of what is possible with Clojure on the desktop than a simple sample application? I made [Hacker News Reader](https://github.com/cljfx/hn) app that shows how cljfx, cljfx/css and jpackage can be used together to create an installable application. You can even [download it](https://github.com/cljfx/hn/releases) and give it a try — packages are built using Github Actions. Please note that there are some build steps that were intentionally omitted to keep it simple:
+- startup time can be improved significantly by AOT-compiling Clojure code;
+- application package size can be reduced: you can use [jlink](https://docs.oracle.com/javase/9/tools/jlink.htm) to minify the JDK, and if your application does not need to use webkit (which is used in this example), you can exclude cljfx's dependency on javafx-web.
 
 ## Closing thoughts
 
