@@ -27,7 +27,7 @@ If only defining a command was as easy as defining a function... If only parsing
         [f & args] (map f opts)]
     (some-> (apply f args) prn)))
 ```
-This entry point establishes a convention for invoking a program and parsing arguments that is a bit vague, but simple, straightforward and powerful. The convention: first argument is a function in the main namespace, remaining arguments are read as values and applied to that function. The important implication of this convention is that you learn both clojure and command line APIs at the same time. Here is how invocation of this CLI might look like:
+This entry point establishes a convention for invoking a program and parsing arguments that is a bit vague, but simple, straightforward and powerful. The convention: it is a function call in main ns with parens omitted. The important implication of this convention is that you learn both clojure and command line APIs at the same time. Here is how invocation of this CLI might look like:
 ```sh
 $ clj -m cli foo :x bar :y true
 ```
