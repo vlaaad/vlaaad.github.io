@@ -4,7 +4,7 @@ title: "Alternative to tools.cli in 10 lines of code"
 description: "With this simple snippet you can build extremely powerful command line entry point to your clojure application"
 ---
 Let me start with what I think command line interface to a program should do:
-- it should teach its user how to use it using by invoking it with some well-known argument such as `-h` or `--help`;
+- it should teach its user how to use it by invoking it with some well-known argument such as `-h` or `--help`;
 - it should run a program, optionally with some arguments.
 
 ## Status quo
