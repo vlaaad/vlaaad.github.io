@@ -174,4 +174,4 @@ I think this is a good thing: if you want to start writing code for such command
 
 If you a willing to give up GNU Program Argument Syntax Guidelines for your command line entry point to a Clojure library, you might find yourself having a simple, concise, powerful and straightforward API that will make your code more transparent to your users.
 
-What do you think?
+What do you think? Discuss [on reddit](https://www.reddit.com/r/Clojure/comments/hynnhy/alternative_to_toolscli_in_10_lines_of_code/).
