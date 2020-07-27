@@ -103,7 +103,7 @@ You may have noticed that this entry point resolves symbols. One unintended cons
 $ clj -m cli clojure.core/prn :woot
 :woot
 ```
-While this particular behavior is certainly not intended and can be restricted with a bit more code, the ability to supply symbols is extremely useful for improving expressivity available to this CLI: it supports any def-ed value as argument! Suppose we write a custom repl that is in its first iteration behaves exactly like `clojure.main/repl`:
+While this particular behavior is certainly not intended and can be restricted with a bit more code, the ability to supply symbols is extremely useful for improving expressivity available to this CLI: it supports any def-ed value as an argument! Suppose we write a custom repl that is in its first iteration behaves exactly like `clojure.main/repl`:
 ```clojure
 (defn repl [& options]
   (apply clojure.main/repl options))
