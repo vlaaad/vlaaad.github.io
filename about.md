@@ -1,7 +1,7 @@
 ---
-layout: post
+layout: about
 title: About
 permalink: /about/
 ---
 
-Vlad, Software Developer in Stockholm.
+Vlad, Software Developer living in Stockholm.
