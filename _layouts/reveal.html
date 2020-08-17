@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reveal: Read Eval Visualize Loop for Clojure</title>
+  {% seo title=false %}
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "/assets/reveal-32.png" | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "/assets/reveal-16.png" | relative_url }}">
+  <link rel="apple-touch-icon" sizes="192x192" href="{{ "/assets/reveal-256.png" | relative_url }}">
+</head>
+<body>
+  <main>
+    <div class="post">
+      <h1 class="post-title">{{ page.title }}</h1>
+      <div class="post-line"></div>
+      {{ content }}
+    </div>
+  </main>
+  {% include footer.html %}
+</body>
+</html>

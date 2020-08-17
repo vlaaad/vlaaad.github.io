@@ -7,8 +7,7 @@ code {
   background-color: $grey-2;
   border-radius: 3px;
   color: #3B3228;
-  font-size: 85%;
-  padding: .25em .5em;
+  padding: .25em .25em;
 }
 
 pre {
@@ -42,4 +41,11 @@ pre code {
        -moz-user-select: none;
             user-select: none;
   }
+}
+
+kbd {
+  padding: 0 .25em;
+  border: 1px solid $grey-1;
+  border-bottom: 2px solid $grey-1;
+  border-radius: 3px;
 }
