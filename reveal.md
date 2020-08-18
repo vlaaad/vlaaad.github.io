@@ -1,6 +1,6 @@
 ---
 layout: reveal
-title: "Reveal: Read&nbsp;Eval&nbsp;Visualize&nbsp;Loop for&nbsp;Clojure"
+title: "Reveal:<br>Read Eval Visualize Loop for&nbsp;Clojure"
 permalink: /reveal/
 ---
 
@@ -101,18 +101,18 @@ Line charts are useful to display progressions, so Reveal suggests them to displ
 
 Finally, Reveal has scatter charts to display coordinates on a 2D plane. A coordinate is represented as a tuple of 2 numbers and as with numbers, you can use a tuple of coordinate and arbitrary value in the place of coordinate. Reveal will suggest scatter charts for collections of coordinates and labeled collections of coordinates.
 
-TODO: scatter chart demo
+![Scatter chart demo](/assets/reveal/scatter-chart.gif)
 
 ## Table view
 
-There are cases where it is better to make sense of the value when it is represented by a table: collections of homogeneous items where columns make it easier to compare corresponding parts of items those items, and big deeply nested data structures where it's easier to look at them layer by layer. 
+There are cases where it is better to make sense of the value when it is represented by a table: collections of homogeneous items where columns make it easier to compare corresponding parts of those items, and big deeply nested data structures where it's easier to look at them layer by layer. 
 
 ![Table view demo](/assets/reveal/table.gif)
 
 ## ...and more
 
 Reveal was designed to be performant: it can stream syntax-highlighted output very fast. In addition to that, there are various helpers for data inspection:
-- text search triggered by <kbd>/</kbd> or <kbd>Ctrl F</kbd>;
+- text search that is triggered by <kbd>/</kbd> or <kbd>Ctrl F</kbd>;
 - out of the box [lambdaisland's deep-diff](https://github.com/lambdaisland/deep-diff2) output highlighting: all you need to do is have it on the classpath;
 - various contextual actions:
   - deref derefable things;
@@ -162,11 +162,18 @@ The main entry point to Reveal is `vlaaad.reveal` ns that has various repls and 
 
 ### `repl`
 
-It is a repl wraps `clojure.main/repl` with additional support for `:repl/quit` and `tap>`. It is the most simple repl you can get.
+It is a repl wraps `clojure.main/repl` with additional support for `:repl/quit` and `tap>`. It is as simple as it gets. I use it all the time. Example:
+
+```sh
+$ clj -A:reveal -m vlaaad.reveal repl
+# Reveal window appears
+Clojure 1.10.1
+user=>
+```
 
 ### `io-prepl` 
 
-This prepl works like `clojure.core.server/io-prepl`. Its purpose is to be run in a process on your dev machine that you want to connect to with another prepl-aware tool. Example:
+This prepl works like `clojure.core.server/io-prepl`. Its purpose is to be run in a process on your machine that you want to connect to using another prepl-aware tool. Example:
 
 ```sh
 $ clj -A:reveal \
@@ -174,7 +181,7 @@ $ clj -A:reveal \
 ```
 Now you can connect to this process using any socket repl and it will show a Reveal window for every connection:
 ```sh
-$ rlwrap nc localhost 5555
+$ nc localhost 5555
 # reveal window appears
 (+ 1 2 3) # input
 {:tag :ret, :val "6", :ns "user", :ms 1, :form "(+ 1 2 3)"} # output
@@ -182,18 +189,88 @@ $ rlwrap nc localhost 5555
 
 ### `remote-prepl`
 
-Reveal is the most useful when it runs in the process where the development happens. This prepl, unlike the previous two, is not like that: it connects to a remote process and shows a window for values that came over the network. It can't benefit from easy access to printed references because these references are pointing to values deserialized from bytes. It's still nice and performant repl, and it's useful when you want to use Reveal to talk to another process that does not have Reveal on the classpath (e.g. production or ClojureScript prepl).
+Reveal is the most useful when it runs in the process where the development happens. This prepl, unlike the previous two, is not like that: it connects to a remote process and shows a window for values that arrived from the network. It can't benefit from easy access to printed references because these references are pointing to values deserialized from bytes, not values in the target VM. It's still nice and performant repl, and it's useful when you want to use Reveal to talk to another process that does not have Reveal on the classpath (e.g. production or ClojureScript prepl).
 
 Example:
+1. Start a prepl without Reveal on the classpath:
+   ```sh
+   $  clj \
+   -Sdeps '{:deps {org.clojure/clojurescript {:mvn/version "1.10.764"}}}' \
+   -J-Dclojure.server.cljs-prepl='{:port 50505 :accept cljs.server.browser/prepl}'
+   ```
+2. Connect to that prepl using Reveal:
+   ```
+   $ clj -A:reveal -m vlaaad.reveal remote-prepl :port 50505
+   # at this point, 2 things happen:
+   # 1. Browser window with cljs prepl appears
+   # 2. Reveal window opens
 
-TODO: cljs example
+   # input
+   js/window
+
+   # output
+   {:tag :ret, 
+    :val #object [Window [object Window]], 
+    :ns "cljs.user", 
+    :ms 25, 
+    :form "js/window"}
+   ```
+
+### `ui`
+
+Calling this function will create and show a Reveal window. It returns a function that you can submit values to — they will appear in the output panel. All built-in visual repls are thin wrappers of other repls that submit values to a window created by this generic function. You can use it to create custom Reveal-flavored repls, or, instead of using it as a repl, you can configure Reveal to only show tapped values.
+
+Example:
+```clj
+(require '[vlaaad.reveal :as reveal])
+
+;; open a window that will show tapped values:
+(add-tap (reveal/ui))
+
+ ;; submit value to the window:
+(tap> {:will-i-see-this-in-reveal-window? true})
+```
+
+### Nrepl middleware
+
+For development workflows that require nrepl Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. Minimum required version of nrepl is 0.6.0
+
+Example of using this middleware with command line nrepl entry point:
+```sh
+$ clj -A:reveal -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
+```
+Alternatively, you can create [.nrepl.edn](https://nrepl.org/nrepl/usage/server.html#server-options) file in your project directory that will be picked up by nrepl. Example `.nrepl.edn` file:
+
+```clj
+{:middleware [vlaaad.reveal.nrepl/middleware]}
+```
+
+# Editor integration
+
+Knowing [User API](#user-api) you should be able to configure your editor to use Reveal, but there are still some points worthy of discussion.
+
+## Cursive
+
+For cursive, you should create a "local repl" run configuration with "clojure.main" repl type. For prefs, use "JVM Args" input, but note that it splits args on spaces, so you should use commas, e.g. `-Dvlaaad.reveal.prefs={:theme,:light}`. This is the most simple setup that allows IDEA to start your application and establish a repl connection for sending forms.
+
+Sometimes this setup is not ideal: you might want to start an application using some other means and then connect to it using IDEA. In that case, you should **not** use "remote repl" run configuration, since it will rewrite your forms and results to something unreadable. Instead, you should still use the "local repl" run configuration, that uses a remote repl client that connects to your process. Example configuration:
+
+1. Make your target process a reveal server:
+
+   ```sh
+   clj -A:reveal -J-Dclojure.server.repl='{:port 5555 :accept vlaaad.reveal/repl}'
+   ```
+2. Add a dependency on [remote-repl](https://github.com/vlaaad/remote-repl) to your `deps.edn`:
+   
+   ```clj
+   {:aliases 
+    {:remote-repl {:extra-deps {vlaaad/remote-repl {:mvn/version "1.1"}}}}}
+   ```
+3. Create a "local repl" run configuration with "clojure.main" repl type, make it "Run with Deps" with `remote-repl` alias, and in Parameters specify `-m vlaaad.remote-repl :port 5555`.
+
 
 # TODO:
-
-- features:
-  - charts
 - usage:
-  - reveal main api, repls/prepls, nrepl support
   - editor integration:
     - cursive: use local main, mention vlaaad/remote-repl for remoting
     - other editors? emacs, vscode, vim, atom
