@@ -4,16 +4,10 @@ title: "Reveal:<br>Read Eval Visualize Loop for&nbsp;Clojure"
 permalink: /reveal/
 ---
 
-TODO: new demo
-should show:
-- how data is displayed (maps, vectors, etc.)
-- eval on selection
-- watchers
-- charts
+![Demo](/assets/reveal/demo.gif)
 
-| [![Clojars Project](https://img.shields.io/clojars/v/vlaaad/reveal.svg?logo=clojure&logoColor=white)](https://clojars.org/vlaaad/reveal) | [![Slack Channel](https://img.shields.io/badge/slack-clojurians%20%23reveal-blue.svg?logo=slack)](https://clojurians.slack.com/messages/reveal/) | [![Github page](https://img.shields.io/badge/github-vlaaad%2Freveal-informational?logo=github)](https://github.com/vlaaad/reveal) |
+| [![Clojars Project](https://img.shields.io/clojars/v/vlaaad/reveal.svg?logo=clojure&logoColor=white&style=for-the-badge)](https://clojars.org/vlaaad/reveal) | [![Github page](https://img.shields.io/badge/github-vlaaad%2Freveal-informational?logo=github&style=for-the-badge)](https://github.com/vlaaad/reveal) | [![Slack Channel](https://img.shields.io/badge/slack-%20%23reveal-blue.svg?logo=slack&style=for-the-badge)](https://clojurians.slack.com/messages/reveal/) |
 
-Table of contents:
 * auto-gen table of contents
 {:toc}
 
@@ -87,7 +81,7 @@ Reveal can show data of particular shapes as charts that are usually explorable:
 
 The simplest shape is labeled numbers. Labeled means that those numbers exist in some collection that has a unique label for every number. For maps, keys are labels, for sequential collections, indices are labels and for sets, numbers themselves are labels.
 
-A pie chart is the only chart that shows labeled numbers:
+A pie chart shows labeled numbers:
 
 ![Pie chart demo](/assets/reveal/pie-chart.gif)
 
@@ -231,29 +225,15 @@ Example:
 (tap> {:will-i-see-this-in-reveal-window? true})
 ```
 
-### Nrepl middleware
-
-For development workflows that require nrepl Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. Minimum required version of nrepl is 0.6.0
-
-Example of using this middleware with command line nrepl entry point:
-```sh
-$ clj -A:reveal -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
-```
-Alternatively, you can create [.nrepl.edn](https://nrepl.org/nrepl/usage/server.html#server-options) file in your project directory that will be picked up by nrepl. Example `.nrepl.edn` file:
-
-```clj
-{:middleware [vlaaad.reveal.nrepl/middleware]}
-```
-
 # Editor integration
 
-Knowing [User API](#user-api) you should be able to configure your editor to use Reveal, but there are still some points worthy of discussion.
+With [user API](#user-api) you should be able to configure your editor to use Reveal, but there are still some points worthy of discussion.
 
 ## Cursive
 
-For cursive, you should create a "local repl" run configuration with "clojure.main" repl type. For prefs, use "JVM Args" input, but note that it splits args on spaces, so you should use commas, e.g. `-Dvlaaad.reveal.prefs={:theme,:light}`. This is the most simple setup that allows IDEA to start your application and establish a repl connection for sending forms.
+For Cursive, you should create a "local repl" run configuration with "clojure.main" repl type. For prefs, use "JVM Args" input, but note that it splits args on spaces, so you should use commas, e.g. `-Dvlaaad.reveal.prefs={:theme,:light}`. This is the most simple setup that allows IDEA to start your application and establish a repl connection for sending forms.
 
-Sometimes this setup is not ideal: you might want to start an application using some other means and then connect to it using IDEA. In that case, you should **not** use "remote repl" run configuration, since it will rewrite your forms and results to something unreadable. Instead, you should still use the "local repl" run configuration, that uses a remote repl client that connects to your process. Example configuration:
+Sometimes this setup is not ideal: you might want to start an application using some other means and then connect to it using IDEA. In that case, you should **not** use "remote repl" run configuration, since it will rewrite your forms and results to something unreadable. Instead, you should still use the "local repl" run configuration that uses a remote repl client that connects to your process. Example:
 
 1. Make your target process a reveal server:
 
@@ -268,12 +248,173 @@ Sometimes this setup is not ideal: you might want to start an application using 
    ```
 3. Create a "local repl" run configuration with "clojure.main" repl type, make it "Run with Deps" with `remote-repl` alias, and in Parameters specify `-m vlaaad.remote-repl :port 5555`.
 
+## Nrepl-based editors
 
-# TODO:
-- usage:
-  - editor integration:
-    - cursive: use local main, mention vlaaad/remote-repl for remoting
-    - other editors? emacs, vscode, vim, atom
-- extensibility:
-  - custom formatting
-  - custom actions
+For development workflows that require nrepl Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. The minimum required version of nrepl is `0.6.0`.
+
+Example of using this middleware with command line nrepl entry point:
+```sh
+$ clj -A:reveal -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
+```
+Alternatively, you can create [.nrepl.edn](https://nrepl.org/nrepl/usage/server.html#server-options) file in your project directory that will be picked up by nrepl. Example `.nrepl.edn` file:
+
+```clj
+{:middleware [vlaaad.reveal.nrepl/middleware]}
+```
+
+## Windows
+
+It's probably a good idea to add `-Dfile.encoding=UTF-8` to JVM options.
+
+# Extending reveal
+
+There are 3 ways to extend Reveal to your needs: custom formatters, actions, and views. All three are available in `vlaaad.reveal.ext` namespace (aliased as `rx` in following examples).
+
+One feature that they all share is annotations — non-intrusive metadata that exists alongside your objects in the Reveal state. Unlike datafy/nav based tooling, it does not obstruct your objects, leaving Clojure's metadata exactly as it is in your program, and, since the annotation is *alongside* the object, Reveal allows any object to be annotated — not just `IMeta`s.
+
+## Formatters
+
+Formatters define how values are shown in the output panel. Formatter dispatch is a multimethod that looks at `:vlaaad.reveal.stream/type` meta key or, if it's absent, at object's class. The recommended way to extend this multi-method is using `(defstream dispatch-val [x ann?] sf)` macro that automatically marks the formatted region with the value that is being formatted. There is a small set of functions that perform the streaming of the formatting in an efficient way called streaming functions (sfs for short).
+
+### Low-level text emitting sfs
+
+These are usually used in the `defstream` body to configure how something looks as text. Such sfs don't mark the text they emit with values that will be available for inspection, instead they rely on their context (e.g. `defstream`) to mark what they emit. There is only 5 of them:
+- `(raw-string x style?)` and `(escaped-string x style? escape-fn escape-style?)` emit syntax-highlighted text. Both accept style map that support following keys:
+  - `:fill` - text fill color, either a string like `"#ff0000"`, web color keyword like `:red`, or one of special values that define theme-dependent color:
+    - `:util` for tool-related text, not values (e.g. `=>` for denoting output);
+    - `:symbol` for symbol color, this is also a default color for text;
+    - `:keyword` for keyword color;
+    - `:string` for denoting string values;
+    - `:object` for denoting composite objects that usually print some other values as a part of their text representation;
+    - `:scalar` for values usually seen as indivisible, such as numbers, booleans and enums;
+    - `:success` to denote success (e.g. passed tests message);
+    - `:failure` to denote failure (e.g. exception);
+  - `:selectable` - whether the emitted text can be selected (defaults to `true`).
+- `(horizontal sf*)` and `(vertical sf*)` wrap a variable number of sfs and align them, e.g. you can think of streaming a map as horizontal `{`, entries and `}`, where in entries each entry is aligned vertically;
+- `separator` visually separates emitted forms, in horizontal blocks it's a non-selectable space, in vertical blocks it's an empty line;
+
+### Delegating sfs
+
+These sfs allow you to stream other values using their default streaming. This is also a place to annotate the streamed values.
+
+- `(stream x ann?)` emits a formatting for passed value — this is the heart of a formatting process;
+- `(horizontally xs ann?)` and `(vertically xs ann?)` work on collections. The difference with their low-level sf counterparts is that they don't realize the whole collection before streaming. You can easily do `(vertically (range))`, and it will not block the process of streaming;
+- `(items xs ann?)` guesses the formatting: dependeing on the input, might behave either as `horizontally` or as `vertically`. Might realize the whole collection before streaming;
+- `(entries m ann?)` is a variation of `vertically` optimized for map entries.
+
+Annotations are only useful if they are used, and they are used from actions. There is an example that configures formatting with annotations and uses these annotations for powerful data inspections [here](https://github.com/vlaaad/reveal/blob/master/examples/e01_loom_formatters_and_actions.clj).
+
+### Overriding sfs
+
+These sfs allow modifying some aspect of a streaming:
+- `(as x ann? sf)` allows using non-default streaming function for some value x, while making `show:value` action available to view the value's default formatting. An example where this might be useful is showing identity hash code that usually has a different representation of an int to signify its meaning:
+   ```clj
+   (defn identity-hash-code-sf [x]
+     (let [hash (System/identityHashCode x)]
+       (rx/as hash
+         (rx/raw-string (format "0x%x" hash) {:fill style/scalar-color}))))
+   ```
+- `(stream-as-is sf)` makes sf _value_ streamable as itself. Streaming functions are ordinary functions that use demunged class name as a formatted representation, and when sf is submitted to Reveal, it will use this default formatting too. There a situations where you might want to just stream some formatted forms to Reveal (e.g. results of custom actions), and this is the way to do it. 
+- `(override-style sf f args*)` transforms the text style of another sf, useful in cases where you might want to mark entire objects and their constituents differently (e.g. styling semantically "ignored" objects as grey).
+
+## Actions
+
+If selected text in Reveal UI has associated value, requesting a context menu on it will show a popup that checks all registered actions and suggest applicable ones. Use `(defaction id [x ann?] body*)` macro to register new actions.
+
+Action body should return a 0-arg function to indicate that this action is available: this function will be executed when the action is selected in the context menu popup. Any other results, including thrown exceptions are ignored. The action body should be reasonobly fast (e.g. not performing disk IO) since all actions are always checked when the user asks for a popup. Returned function, on the other hand, may block for as long as needed: Reveal will show a loading indicator while it's executed.
+
+Minimal action example that shows shows how strings look unescaped (e.g. display `"hello\nworld"` as `hello` and `world` on separate lines):
+
+```clj
+(rx/defaction ::unescape [x]
+  (when (string? x)
+    #(rx/stream-as-is 
+       (rx/as x (rx/raw-string x {:fill style/string-color})))))
+```
+
+As mentioned earlier, there is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e01_loom_formatters_and_actions.clj) that shows how actions and formatting can build on each other to aid with data exploration:
+
+![Actions demo](/assets/reveal/custom-actions.gif)
+
+## Views
+
+A major difference between Output panel and Results panel is that the latter can show any graphical node allowed by Reveal's UI framework ([JavaFX](https://openjfx.io/)). Reveal is built on [cljfx](https://github.com/cljfx/cljfx) — declarative, functional and extensible wrapper of JavaFX inspired by react. Reveal converts all action results to cljfx component descriptions with `vlaaad.reveal.view/Viewable` protocol that shows them with output panel view by default. You can reify an instance of the protocol with `(view-as-is desc)` function. 
+
+### Short cljfx intro
+
+To learn cljfx/JavaFX, you should go through cljfx [readme](https://github.com/cljfx/cljfx) and [examples](https://github.com/cljfx/cljfx/tree/master/examples) to get familiar with semantics and explore [JavaFX javadoc](https://openjfx.io/javadoc/14/) to find available views. This might be a big task, so to get a feel for it here is this short introduction.
+
+To describe a node, cljfx uses maps with a special key — `:fx/type` — that defines a type of node, while other keys define properties of that node. Value on `:fx/type` key can be a keyword (kebab-cased JavaFX class name) or a function (that receives a map of props and returns another description).
+Some examples of most commonly used descriptions:
+
+```clj
+;; showing a text
+{:fx/type :label
+ :text (str (range 10))}
+
+;; showing a button with a callback:
+{:fx/type :button
+ :text "Deploy"
+ :on-action (fn [event] (deploy-to-production!))}
+
+;; combining views together
+{:fx/type :v-box ;; vertically
+ :children [{:fx/type rx/value-view ;; built-in component
+             :value msft-stock}
+            {:fx/type :h-box ;; horizontally
+             :children [{:fx/type :button
+                         :text "Sell"
+                         :on-action (fn [_] (sell! :msft))}
+                        {:fx/type :button
+                         :text "Buy"
+                         :on-action (fn [_] (buy! :msft))}]}]}
+```
+While cljfx supports using maps to define callbacks, you should only use functions — behavior of map event handling is implementation detail that is subject to change.
+
+### Built-in components
+
+Reveal provides an access to various built-in components:
+- `value-view` is a default view used in Output panel that show values using streaming formatting, for example:
+  ```clj
+  {:fx/type rx/value-view
+   :value (all-ns)}
+  ```
+- `watch:all` and `watch:latest` actions are powered by `ref-watch-all-view` and `ref-watch-latest-view`. Additionally, there is `(observable ref fn)` utility function that allows seeing a ref through a transform — it is intended to be used with these functions, for example:
+  ```clj
+  {:fx/type rx/ref-watch-latest-view
+   :ref (rx/observable my-int-atom (juxt dec identity inc))}
+  ```
+- `observable-view` allows deriving the whole cljfx component from `IRef` state, and showing it updated live whenever the ref is mutated. There is [an example](https://github.com/vlaaad/reveal/blob/master/examples/e02_integrant_live_system_view.clj) showing how it can be used for creating live monitor and controls for [integrant](https://github.com/weavejester/integrant)-managed app state.
+- `derefable-view` asynchronously derefs a blocking derefable (e.g. future or promise);
+- `table-view` shows a table. Unlike `view:table` action, it does not guess the columns, instead you need to provide them yourself, for example:
+   ```clj
+   {:fx/type rx/table-view
+    :items [:foo :foo/bar :foo/bar/baz :+]
+    :columns [{:fn namespace} 
+              {:fn name} 
+              {:fn #(resolve (symbol %)) 
+               :header 'resolve}]}
+   ```
+- chart views: `pie-chart-view`, `bar-chart-view`, `line-chart-view` and `scatter-chart-view`. They do not try to guess the shape of data in the same way that their corresponding actions do, e.g. line chart data sequence always has to be labeled even when there is only one data series:
+  ```clj
+  {:fx/type line-chart-view
+   :data #{(map #(* % %) (range 100))}}
+  ```
+
+### Pluggable context menu
+
+Fancy visualizations don't have to be leaf nodes that you can only look at — wouldn't it be nice to select a data point on a plot and explore it as a value? Reveal supports this continued data exploration for built-in views like charts and tables out of the box. In addition to that it provides a way to install the action popup on any JavaFX node with a special component — `popup-view`:
+
+```clj
+{:fx/type rx/popup-view
+ :value (the-ns 'clojure.core)
+ :desc {:fx/type :label
+        :text "The Clojure language library"}}
+```
+This description shows label that you can request a context menu on, and shown popup will suggest acions on `clojure.core` ns. There is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e03_chess_server_popups.clj) showing how to create a custom view for a chess server that displays active games as chess boards and allows inspecting any piece:
+
+![Custom views demo](/assets/reveal/custom-views.gif)
+
+# Closing thoughts
+
+If repl is a window to a running program, then Reveal is an open door — you are welcome to come in. I get a lot of leverage from the ability to inspect any object I see, and I hope you will find Reveal useful too.
