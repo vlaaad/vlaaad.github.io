@@ -417,4 +417,4 @@ This description shows label that you can request a context menu on, and its pop
 
 # Closing thoughts
 
-If repl is a window to a running program, then Reveal is an open door — you are welcome to come in. I get a lot of leverage from the ability to inspect any object I see, and I hope you will find Reveal useful too.
+If repl is a window to a running program, then Reveal is an open door — and you are welcome to come in. I get a lot of leverage from the ability to inspect any object I see, and I hope you will find Reveal useful too.
