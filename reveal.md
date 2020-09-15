@@ -26,10 +26,10 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "0.1.0-ea29"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "0.1.0-ea123"}}}' \
 -m vlaaad.reveal repl
 ```
-Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the repl.
+Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 # Features
 
@@ -299,7 +299,7 @@ These sfs allow you to stream other values using their default streaming. This i
 
 - `(stream x ann?)` emits a formatting for passed value — this is the heart of a formatting process;
 - `(horizontally xs ann?)` and `(vertically xs ann?)` work on collections. The difference with their low-level sf counterparts is that they don't realize the whole collection before streaming. You can easily do `(vertically (range))`, and it will not block the process of streaming;
-- `(items xs ann?)` guesses the formatting: dependeing on the input, might behave either as `horizontally` or as `vertically`. Might realize the whole collection before streaming;
+- `(items xs ann?)` guesses the formatting: depending on the input, might behave either as `horizontally` or as `vertically`. Might realize the whole collection before streaming;
 - `(entries m ann?)` is a variation of `vertically` optimized for map entries.
 
 Annotations are only useful if they are used, and they are used from actions. There is an example that configures formatting with annotations and uses these annotations for powerful data inspections [here](https://github.com/vlaaad/reveal/blob/master/examples/e01_loom_formatters_and_actions.clj).
@@ -312,7 +312,7 @@ These sfs allow modifying some aspect of a streaming:
    (defn identity-hash-code-sf [x]
      (let [hash (System/identityHashCode x)]
        (rx/as hash
-         (rx/raw-string (format "0x%x" hash) {:fill style/scalar-color}))))
+         (rx/raw-string (format "0x%x" hash) {:fill :scalar}))))
    ```
 - `(stream-as-is sf)` makes sf _value_ streamable as itself. Streaming functions are ordinary functions that use demunged class name as a formatted representation, and when sf is submitted to Reveal, it will use this default formatting too. There a situations where you might want to just stream some formatted forms to Reveal (e.g. results of custom actions), and this is the way to do it. 
 - `(override-style sf f args*)` transforms the text style of another sf, useful in cases where you might want to mark entire objects and their constituents differently (e.g. styling semantically "ignored" objects as grey).
@@ -369,7 +369,7 @@ Some examples of most commonly used descriptions:
                          :text "Buy"
                          :on-action (fn [_] (buy! :msft))}]}]}
 ```
-While cljfx supports using maps to define callbacks, you should only use functions — behavior of map event handling is implementation detail that is subject to change.
+While cljfx supports using maps to define callbacks, you should only use functions — behavior of map event handling is an implementation detail that is subject to change.
 
 ### Built-in components
 
@@ -379,7 +379,7 @@ Reveal provides an access to various built-in components:
   {:fx/type rx/value-view
    :value (all-ns)}
   ```
-- `watch:all` and `watch:latest` actions are powered by `ref-watch-all-view` and `ref-watch-latest-view`. Additionally, there is `(observable ref fn)` utility function that allows seeing a ref through a transform — it is intended to be used with these functions, for example:
+- `watch:all` and `watch:latest` actions are powered by `ref-watch-all-view` and `ref-watch-latest-view`. Additionally, there is `(observable ref fn)` utility function that allows seeing a ref through a transform — it is intended to be used with these views, for example:
   ```clj
   {:fx/type rx/ref-watch-latest-view
    :ref (rx/observable my-int-atom (juxt dec identity inc))}
@@ -411,7 +411,7 @@ Fancy visualizations don't have to be leaf nodes that you can only look at — w
  :desc {:fx/type :label
         :text "The Clojure language library"}}
 ```
-This description shows label that you can request a context menu on, and shown popup will suggest acions on `clojure.core` ns. There is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e03_chess_server_popups.clj) showing how to create a custom view for a chess server that displays active games as chess boards and allows inspecting any piece:
+This description shows label that you can request a context menu on, and its popup will suggest acions on `clojure.core` ns. There is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e03_chess_server_popups.clj) showing how to create a custom view for a chess server that displays active games as chess boards and allows inspecting any piece:
 
 ![Custom views demo](/assets/reveal/custom-views.gif)
 
