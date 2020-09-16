@@ -26,7 +26,7 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.0.126"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.0.128"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
