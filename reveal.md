@@ -266,6 +266,8 @@ Alternatively, you can create [.nrepl.edn](https://nrepl.org/nrepl/usage/server.
 
 It's probably a good idea to add `-Dfile.encoding=UTF-8` to JVM options.
 
+If you want to use reveal from WSL, you will need X server (e.g. [X410](https://x410.dev/)). Make sure you have `libgtk-3-0` installed (e.g. with `sudo apt install libgtk-3-0`). If you have HiDPI screen, you should set `GDK_SCALE` env variable to appropriate scale factor (e.g. `export GDK_SCALE=2`).
+
 # Extending reveal
 
 There are 3 ways to extend Reveal to your needs: custom formatters, actions, and views. All three are available in `vlaaad.reveal.ext` namespace (aliased as `rx` in following examples).
