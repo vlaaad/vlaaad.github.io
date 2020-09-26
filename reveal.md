@@ -397,6 +397,7 @@ Reveal provides an access to various built-in components:
               {:fn #(resolve (symbol %)) 
                :header 'resolve}]}
    ```
+   A bigger example that combines observable and table views to always show last tapped value as a table can be found [here](https://github.com/vlaaad/reveal/blob/master/examples/e04_tap_to_table.clj).
 - chart views: `pie-chart-view`, `bar-chart-view`, `line-chart-view` and `scatter-chart-view`. They do not try to guess the shape of data in the same way that their corresponding actions do, e.g. line chart data sequence always has to be labeled even when there is only one data series:
   ```clj
   {:fx/type line-chart-view
