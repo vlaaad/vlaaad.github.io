@@ -316,7 +316,7 @@ These sfs allow modifying some aspect of a streaming:
        (rx/as hash
          (rx/raw-string (format "0x%x" hash) {:fill :scalar}))))
    ```
-- `(stream-as-is sf)` makes sf _value_ streamable as itself. Streaming functions are ordinary functions that use demunged class name as a formatted representation, and when sf is submitted to Reveal, it will use this default formatting too. There a situations where you might want to just stream some formatted forms to Reveal (e.g. results of custom actions), and this is the way to do it. 
+- `(stream-as-is sf)` makes sf _value_ streamable as itself. Streaming functions are ordinary functions that use demunged class name as a formatted representation, and when sf is submitted to Reveal, it will use this default formatting too. There are situations where you might want to just stream some formatted forms to Reveal (e.g. results of custom actions), and this is the way to do it. 
 - `(override-style sf f args*)` transforms the text style of another sf, useful in cases where you might want to mark entire objects and their constituents differently (e.g. styling semantically "ignored" objects as grey).
 
 ## Actions
@@ -331,7 +331,7 @@ Minimal action example that shows shows how strings look unescaped (e.g. display
 (rx/defaction ::unescape [x]
   (when (string? x)
     #(rx/stream-as-is 
-       (rx/as x (rx/raw-string x {:fill style/string-color})))))
+       (rx/as x (rx/raw-string x {:fill :string})))))
 ```
 
 As mentioned earlier, there is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e01_loom_formatters_and_actions.clj) that shows how actions and formatting can build on each other to aid with data exploration:
