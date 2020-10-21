@@ -325,7 +325,7 @@ If selected text in Reveal UI has associated value, requesting a context menu on
 
 Action body should return a 0-arg function to indicate that this action is available: this function will be executed when the action is selected in the context menu popup. Any other results, including thrown exceptions are ignored. The action body should be reasonobly fast (e.g. not performing disk IO) since all actions are always checked when the user asks for a popup. Returned function, on the other hand, may block for as long as needed: Reveal will show a loading indicator while it's executed.
 
-Minimal action example that shows shows how strings look unescaped (e.g. display `"hello\nworld"` as `hello` and `world` on separate lines):
+Minimal action example that shows how strings look unescaped (e.g. display `"hello\nworld"` as `hello` and `world` on separate lines):
 
 ```clj
 (rx/defaction ::unescape [x]
