@@ -340,11 +340,11 @@ As mentioned earlier, there is [a bigger example](https://github.com/vlaaad/reve
 
 ## Views
 
-A major difference between Output panel and Results panel is that the latter can show any graphical node allowed by Reveal's UI framework ([JavaFX](https://openjfx.io/)). Reveal is built on [cljfx](https://github.com/cljfx/cljfx) — declarative, functional and extensible wrapper of JavaFX inspired by react. Reveal converts all action results to cljfx component descriptions with `vlaaad.reveal.view/Viewable` protocol that shows them with output panel view by default. You can reify an instance of the protocol with `(view-as-is desc)` function. 
+A major difference between Output panel and Results panel is that the latter can show any graphical node allowed by Reveal's UI framework ([JavaFX](https://openjfx.io/)). Reveal is built on [cljfx](https://github.com/cljfx/cljfx) — declarative, functional and extensible wrapper of JavaFX inspired by react. Reveal converts all action results to cljfx component descriptions, and if returned action result is cljfx description, it is rendered as UI component.
 
 ### Short cljfx intro
 
-To learn cljfx/JavaFX, you should go through cljfx [readme](https://github.com/cljfx/cljfx) and [examples](https://github.com/cljfx/cljfx/tree/master/examples) to get familiar with semantics and explore [JavaFX javadoc](https://openjfx.io/javadoc/14/) to find available views. This might be a big task, so to get a feel for it here is this short introduction.
+To thoroughly learn cljfx/JavaFX, you should go through cljfx [readme](https://github.com/cljfx/cljfx) and [examples](https://github.com/cljfx/cljfx/tree/master/examples) to get familiar with semantics and explore [JavaFX javadoc](https://openjfx.io/javadoc/14/) to find available views. This might be a big task, so to get a feel for it here is this short introduction.
 
 To describe a node, cljfx uses maps with a special key — `:fx/type` — that defines a type of node, while other keys define properties of that node. Value on `:fx/type` key can be a keyword (kebab-cased JavaFX class name) or a function (that receives a map of props and returns another description).
 Some examples of most commonly used descriptions:
@@ -376,7 +376,7 @@ While cljfx supports using maps to define callbacks, you should only use functio
 ### Built-in components
 
 Reveal provides an access to various built-in components:
-- `value-view` is a default view used in Output panel that show values using streaming formatting, for example:
+- `value-view` is a default view used in Output panel for action results that are not cljfx descriptions. It shows values using streaming formatting, for example:
   ```clj
   {:fx/type rx/value-view
    :value (all-ns)}
