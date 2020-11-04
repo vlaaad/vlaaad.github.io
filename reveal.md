@@ -231,7 +231,7 @@ With [user API](#user-api) you should be able to configure your editor to use Re
 
 ## Cursive
 
-For Cursive, you should create a "local repl" run configuration with "clojure.main" repl type. For prefs, use "JVM Args" input, but note that it splits args on spaces, so you should use commas, e.g. `-Dvlaaad.reveal.prefs={:theme,:light}`. This is the most simple setup that allows IDEA to start your application and establish a repl connection for sending forms.
+For Cursive, you should create a "Clojure Repl - Local" run configuration with the "clojure.main" repl type, "Run with Deps", and the "Parameters" `-m vlaaad.reveal repl` (or put those inside `:main-opts` of an alias and add that to the "Aliases" list). For prefs, use "JVM Args" input, but note that it splits args on spaces, so you should use commas, e.g. `-Dvlaaad.reveal.prefs={:theme,:light}`. This is the most simple setup that allows IDEA to start your application and establish a repl connection for sending forms.
 
 Sometimes this setup is not ideal: you might want to start an application using some other means and then connect to it using IDEA. In that case, you should **not** use "remote repl" run configuration, since it will rewrite your forms and results to something unreadable. Instead, you should still use the "local repl" run configuration that uses a remote repl client that connects to your process. Example:
 
