@@ -26,10 +26,17 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.0.130"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.0.154"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
+
+Here is an example alias you can put into your user `deps.edn`:
+```clj
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.0.154"}}
+         :ns-default vlaaad.reveal
+         :exec-fn repl}
+```
 
 # Features
 
@@ -125,7 +132,10 @@ Reveal UI is made of 3 components:
 - a context menu that can invoke actions on selected values;
 - results panel that has 1 or more tabs with action results produced from the context menu.
 
-Navigation:
+### Navigation
+
+You can navigate around values as you do it in text editors by using arrow keys. Other navigation:
+
 - Use <kbd>Space</kbd>, <kbd>Enter</kbd> or right mouse button to open a context menu on selection;
 - Use <kbd>Tab</kbd> to switch focus between output and results panel;
 - In results panel:
@@ -135,6 +145,10 @@ Navigation:
   - Use <kbd>↑</kbd> and <kbd>↓</kbd> to move focus between available actions and input text field;
   - Use <kbd>Enter</kbd> to execute selected action or form written in the text field;
   - Use <kbd>Esc</kbd> to close the context menu.
+
+### Structural navigation
+
+Reveal output panel has natural structural navigation that is activated by pressing arrow keys while holding <kbd>Alt</kbd>. The cursor will jump to the next value in a direction of an arrow, making navigation experience similar to navigating tables. Pressing <kbd>Alt ←</kbd> when there is no value to the left in the data structure will move the cursor out of this data structure. You can also use <kbd>Alt Home</kbd> and <kbd>Alt End</kbd> to move to first / last row in a data structure.
 
 ## Customization
 
