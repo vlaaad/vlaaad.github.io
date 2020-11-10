@@ -26,14 +26,14 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.1.162"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.1.163"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 Here is an example alias you can put into your user `deps.edn`:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.1.162"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.1.163"}}
          :ns-default vlaaad.reveal
          :exec-fn repl}
 ```
