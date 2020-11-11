@@ -110,6 +110,8 @@ There are cases where it is better to make sense of the value when it is represe
 
 ![Table view demo](/assets/reveal/table.gif)
 
+Note: You can use `Alt ↑` and `Alt ↓` to sort table by values in selected column; and `Ctrl C` will copy cell content as text.
+
 ## ...and more
 
 Reveal was designed to be performant: it can stream syntax-highlighted output very fast. In addition to that, there are various helpers for data inspection:
