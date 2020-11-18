@@ -38,6 +38,8 @@ Here is an example alias you can put into your user `deps.edn`:
          :exec-fn repl}
 ```
 
+(Note: requires `clj > 1.10.1.672`, see https://insideclojure.org/2020/09/04/clj-exec/)
+
 # Features
 
 ## `tap>` support
