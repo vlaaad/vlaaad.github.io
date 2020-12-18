@@ -148,10 +148,12 @@ You can navigate around values as you do it in text editors by using arrow keys.
 - Use <kbd>Tab</kbd> to switch focus between output and results panel;
 - In results panel:
   - Use <kbd>Ctrl ←</kbd> and <kbd>Ctrl →</kbd> to switch tabs in results panel;
+  - Use <kbd>Ctrl ↑</kbd> to open result panel's tab tree that provides a hierarchical overview of all tabs in this panel;
   - Use <kbd>Esc</kbd> to close the tab
 - In a context menu:
   - Use <kbd>↑</kbd> and <kbd>↓</kbd> to move focus between available actions and input text field;
   - Use <kbd>Enter</kbd> to execute selected action or form written in the text field;
+  - Use <kbd>Ctrl Enter</kbd> to display action result in new results panel;
   - Use <kbd>Esc</kbd> to close the context menu.
 
 ### Structural navigation
