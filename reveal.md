@@ -1,7 +1,7 @@
 ---
 layout: reveal
 title: "Reveal:<br>Read Eval Visualize Loop for&nbsp;Clojure"
-permalink: /reveal
+permalink: /reveal/
 ---
 
 ![Demo](/assets/reveal/demo.gif)
