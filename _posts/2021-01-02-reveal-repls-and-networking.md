@@ -118,3 +118,5 @@ Evaluating code like `js/window` on machine A will make ClojureScript evaluate c
 ## Conclusion
 
 Once I've got the simplicity of REPL, I've got a lot more power at my disposal, with a significantly smaller cognitive footprint and improved understanding of underlying stack (e.g. Clojure evaluation semantics). If you don't know it, you don't know it; if you know it, you enjoy it.
+
+What do you think?
