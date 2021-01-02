@@ -91,7 +91,7 @@ Console output is the same, but there is now a Reveal window that shows evaluati
 
 Now, lets get back to the original question of having REPL configuration where editor is on machine A, Reveal on machine B and target process on machine C. We already have most of the pieces laid out, the only missing part is how to setup reveal to run as a server that is itself a client, and that part is `:args` — additional arguments to a repl function specified by `:accept` symbol.
 
-Lets setup it piece by piece. I'll use everything on the same machine because I'm lazy, but the real world example will differ only in having to specify `:host` in addition to `:port`. Machine C with ClojureScript prepl just for fun:
+Lets setup it piece by piece. I'll use everything on the same machine because I'm lazy, but the real world example will differ only in having to specify `:host` in addition to `:port`. Here is machine C with ClojureScript prepl just for fun:
 ```
 clj \
 -Sdeps '{:deps {org.clojure/clojurescript {:mvn/version "1.10.764"}}}' \
