@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reveal networking: 3-body problem"
+title: "Reveal, REPLs and networking"
 description: "REPL: if you don't know it, you don't know it; if you know it, you enjoy it"
 ---
 I recently got a question whether it's possible to configure [Reveal](vlaaad.github.io/reveal/) in such a way that it works across 3 machines:
