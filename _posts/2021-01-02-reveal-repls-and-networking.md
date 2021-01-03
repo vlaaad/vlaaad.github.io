@@ -6,7 +6,7 @@ description: "REPL: if you don't know it, you don't know it; if you know it, you
 I recently got a question whether it's possible to configure [Reveal](vlaaad.github.io/reveal/) in such a way that it works across 3 machines:
 - machine A runs editor;
 - machine B runs only Reveal;
-- machine C runs runs target server.
+- machine C runs target server.
 
 It also reminded me of [an article](https://suvratapte.com/nREPL-middleware/) I read awhile ago about nREPL middlewares that gives a good overview of how those work, but unfortunately contains a mistake in a section where it discusses Clojure REPL, where it states that:
 
@@ -25,15 +25,20 @@ nREPL, despite its name, is not a REPL, it's a eval RPC server. It does not have
 
 ## Starting REPL socket server
 
-It is simple to start a REPL that can be reached from a remote machine, you won't even need any external dependencies, it's all here in [clojure.core.server](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core.server/start-server) namespace. The easiest way to start it is to specify a JVM property that [starts socket server](https://clojure.org/reference/repl_and_main#_launching_a_socket_server) automatically on the JVM startup:
+It is trivial to start a REPL that can be reached from a remote machine, you won't even need any external dependencies, it's all there in [clojure.core.server](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core.server/start-server) namespace. The easiest way to start it is to specify a JVM property that [starts socket server](https://clojure.org/reference/repl_and_main#_launching_a_socket_server) automatically on the JVM startup, but for simplicity we will call it directly as a function:
 ```
 clj \
--J-Dclojure.server.repl='{:port 5555 :accept clojure.core.server/repl}'
+-X clojure.core.server/start-server \
+:name '"repl"' \
+:port 5555 \
+:accept clojure.core.server/repl \
+:server-daemon false
 ```
-This property configures required args to `clojure.core.server/start-repl` fn:
-- `:name` is a part of a property name after `clojure.server.`, i.e. `"repl"`;
-- `:port` is a server port;
-- `:accept` is a symbol of a repl function.
+This clj-exec invocation supplies all required args to `clojure.core.server/start-server` fn:
+- `:name` is a server identifier that can be used to stop the server;
+- `:port` is a socket REPL port;
+- `:accept` is a symbol indicating a repl function.
+Remaining `:server-daemon` argument is needed to keep the JVM running while REPL server is active, you won't need this argument if you are using `start-server` from the REPL.
 
 ## Connecting to remote socket REPL
 
@@ -43,7 +48,7 @@ nc localhost 5555
 user=> (+ 1 2 3)
 6
 ```
-How about nesting REPLs to connect to this REPL server from another clojure REPL? There is no built-in way to do it, but the implementation of [REPL client](https://github.com/vlaaad/remote-repl) is less than 50 lines of code, thanks to the simplicity of REPL concept. Let's try it:
+How about nesting REPLs to connect to this REPL server from another clojure REPL? There is no built-in way to do it, but the implementation of [REPL client](https://github.com/vlaaad/remote-repl) is less than 50 lines of code, thanks to the simplicity of REPL concept. Let's try it out:
 ```
 clj \
 -Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}'
@@ -63,27 +68,33 @@ user=>
 ## REPLs for humans, prepls for tools
 
 How about using Reveal to connect to this server? Reveal is a tool that needs structured REPL output to process it properly, it can't really work on REPL prompts like `user=>`. There is [prepl](https://oli.me.uk/clojure-socket-prepl-cookbook/) (programmable REPL), which is a socket REPL with output structured as edn maps — bread and butter of Clojure. To connect Reveal to remote socket REPL server it needs to be a prepl, like that:
-```
+```sh
 clj \
--J-Dclojure.server.repl='{:port 5555 :accept clojure.core.server/io-prepl}'
+-X clojure.core.server/start-server \
+:name '"repl"' \
+:port 5555 \
+:accept clojure.core.server/io-prepl \
+:server-daemon false
 ```
 If you are curious how this REPL's output looks like, here is an example at the command line:
-```
+```sh
 clj \
 -Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}' \
--M -m vlaaad.remote-repl :port 5555
+-X vlaaad.remote-repl/repl \
+:port 5555
 (+ 1 2 3)
 {:tag :ret, :val "6", :ns "user", :ms 9, :form "(+ 1 2 3)"}
 ```
-Reveal can talk to this prepl server out of the box with its [remote-prepl](https://vlaaad.github.io/reveal/#remote-prepl) entry point:
-```
+Reveal can talk to this prepl server out of the box with its [remote-prepl](https://vlaaad.github.io/reveal/#remote-prepl):
+```sh
 clj \
 -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.182"}}}' \
--M -m vlaaad.reveal remote-prepl :port 5555
+-X vlaaad.reveal/remote-prepl \
+:port 5555
 (+ 1 2 3)
 {:tag :ret, :val 6, :ns "user", :ms 2, :form "(+ 1 2 3)"}
 ```
-Console output is the same, but there is now a Reveal window that shows evaluations results in it's window:
+Console output is the same, but there is now a Reveal window that shows evaluations results in its window:
 
 ![](/assets/2021-01-02/remote-prepl.png)
 
@@ -91,25 +102,35 @@ Console output is the same, but there is now a Reveal window that shows evaluati
 
 Now, lets get back to the original question of having REPL configuration where editor is on machine A, Reveal on machine B and target process on machine C. We already have most of the pieces laid out, the only missing part is how to setup reveal to run as a server that is itself a client, and that part is `:args` — additional arguments to a repl function specified by `:accept` symbol.
 
-Lets setup it piece by piece. I'll use everything on the same machine because I'm lazy, but the real world example will differ only in having to specify `:host` in addition to `:port`. Here is machine C with ClojureScript prepl just for fun:
-```
+Lets setup it piece by piece. I'll use everything on the same machine because I'm lazy, but the real world example will differ only in having to specify `:host` in addition to `:port` in clients. Here is machine C with ClojureScript prepl just for fun:
+```sh
 clj \
 -Sdeps '{:deps {org.clojure/clojurescript {:mvn/version "1.10.764"}}}' \
--J-Dclojure.server.cljs='{:port 5555 :accept cljs.server.browser/prepl}'
+-X clojure.core.server/start-server \
+:name '"cljs"' \
+:accept cljs.server.browser/prepl \
+:port 5555 \
+:server-daemon false
 ```
 
 Machine B, that uses Reveal to connect to C while acting as a REPL server:
-```
+```sh
 clj \
 -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.182"}}}' \
--J-Dclojure.server.reveal='{:port 6666 :accept vlaaad.reveal/remote-prepl :args [:port 5555]}'
+-X clojure.core.server/start-server \
+:name '"reveal"' \
+:accept vlaaad.reveal/remote-prepl \
+:args '[:port 5555]' \
+:port 6666 \
+:server-daemon false
 ```
 
 Finally, we can connect from machine A to machine B on port `6666`, and that will make it open a Reveal window with connection to machine C:
 ```
 clj \
 -Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}' 
--M -m vlaaad.remote-repl :port 6666
+-X vlaaad.remote-repl/repl \
+:port 6666
 ```
 Evaluating code like `js/window` on machine A will make ClojureScript evaluate code in the browser on machine C and send it to machine B where Reveal will show the output:
 
