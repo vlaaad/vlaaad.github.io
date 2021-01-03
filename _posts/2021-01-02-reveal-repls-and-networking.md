@@ -140,7 +140,7 @@ clj \
 Finally, we can connect from machine A to machine B on port `6666`, and that will make it open a Reveal window with connection to machine C:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}' 
+-Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}' \
 -X vlaaad.remote-repl/repl \
 :port 6666
 ```
