@@ -59,7 +59,7 @@ user=> (+ 1 2 3)
 6
 ```
 How about nesting REPLs to connect to this REPL server from another clojure REPL? There is no built-in way to do it, but the implementation of [REPL client](https://github.com/vlaaad/remote-repl) is less than 50 lines of code, thanks to the simplicity of REPL concept. Let's try it out:
-```sh
+```
 clj \
 -Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}'
 Clojure 1.10.1
