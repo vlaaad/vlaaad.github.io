@@ -67,8 +67,8 @@ user=> (require '[vlaaad.remote-repl :as rr])
 nil
 user=> (rr/repl :port 5555)
 ;; at this point, forms sent to the repl are evaluated in the remote process
-user=> (System/getProperty "clojure.server.repl")
-"{:port 5555 :accept clojure.core.server/repl}"
+user=> clojure.core.server/*session*
+{:server repl, :client "1"}
 user=> :repl/quit
 ;; now we are back to evaluating in our local process.
 nil
