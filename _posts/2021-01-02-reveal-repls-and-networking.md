@@ -26,7 +26,7 @@ nREPL, despite its name, is not a REPL, it's a eval RPC server. It does not have
 ## Starting REPL socket server
 
 It is trivial to start a REPL that can be reached from a remote machine, you won't even need any external dependencies, it's all there in [clojure.core.server](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core.server/start-server) namespace. The easiest way to start it is to specify a JVM property that [starts socket server](https://clojure.org/reference/repl_and_main#_launching_a_socket_server) automatically on the JVM startup, but for simplicity we will call it directly as a function:
-```
+```sh
 clj \
 -X clojure.core.server/start-server \
 :name '"repl"' \
@@ -59,7 +59,7 @@ user=> (+ 1 2 3)
 6
 ```
 How about nesting REPLs to connect to this REPL server from another clojure REPL? There is no built-in way to do it, but the implementation of [REPL client](https://github.com/vlaaad/remote-repl) is less than 50 lines of code, thanks to the simplicity of REPL concept. Let's try it out:
-```
+```sh
 clj \
 -Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}'
 Clojure 1.10.1
@@ -136,7 +136,7 @@ clj \
 ```
 
 Finally, we can connect from machine A to machine B on port `6666`, and that will make it open a Reveal window with connection to machine C:
-```
+```sh
 clj \
 -Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}' 
 -X vlaaad.remote-repl/repl \
