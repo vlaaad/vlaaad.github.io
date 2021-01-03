@@ -34,11 +34,21 @@ clj \
 :accept clojure.core.server/repl \
 :server-daemon false
 ```
-This clj-exec invocation supplies all required args to `clojure.core.server/start-server` fn:
+This [clj-exec](https://insideclojure.org/2020/09/04/clj-exec/) invocation supplies all required args to `clojure.core.server/start-server` fn:
 - `:name` is a server identifier that can be used to stop the server;
 - `:port` is a socket REPL port;
 - `:accept` is a symbol indicating a repl function.
+
 Remaining `:server-daemon` argument is needed to keep the JVM running while REPL server is active, you won't need this argument if you are using `start-server` from the REPL.
+
+If you are unfamiliar with clj-exec, this invocation is analogous to a following clojure form:
+```clj
+(clojure.core.server/start-server
+  '{:name "repl"
+    :port 5555
+    :accept clojure.core.server/repl
+    :server-daemon false})
+```
 
 ## Connecting to remote socket REPL
 
