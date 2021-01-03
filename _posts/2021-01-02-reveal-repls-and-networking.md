@@ -92,6 +92,7 @@ clj \
 -Sdeps '{:deps {vlaaad/remote-repl {:mvn/version "1.1"}}}' \
 -X vlaaad.remote-repl/repl \
 :port 5555
+
 (+ 1 2 3)
 {:tag :ret, :val "6", :ns "user", :ms 9, :form "(+ 1 2 3)"}
 ```
@@ -101,10 +102,11 @@ clj \
 -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.182"}}}' \
 -X vlaaad.reveal/remote-prepl \
 :port 5555
+
 (+ 1 2 3)
 {:tag :ret, :val 6, :ns "user", :ms 2, :form "(+ 1 2 3)"}
 ```
-Console output is the same, but there is now a Reveal window that shows evaluations results in its window:
+Console output is the same, but there is now a Reveal window that shows evaluations results:
 
 ![](/assets/2021-01-02/remote-prepl.png)
 
