@@ -26,21 +26,21 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.182"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.185"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 Here is an example alias you can put into your user `deps.edn`:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.182"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.185"}}
          :ns-default vlaaad.reveal
          :exec-fn repl}
 ```
 
 If you are using older version of `clj` (before [1.10.1.672](https://insideclojure.org/2020/09/04/clj-exec/)), you can use this main-style alias:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.182"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.185"}}
          :main-opts ["-m" "vlaaad.reveal" "repl"]}
 ```
 
@@ -340,7 +340,6 @@ These sfs allow modifying some aspect of a streaming:
        (rx/as hash
          (rx/raw-string (format "0x%x" hash) {:fill :scalar}))))
    ```
-- `(stream-as-is sf)` makes sf _value_ streamable as itself. Streaming functions are ordinary functions that use demunged class name as a formatted representation, and when sf is submitted to Reveal, it will use this default formatting too. There are situations where you might want to just stream some formatted forms to Reveal (e.g. results of custom actions), and this is the way to do it. 
 - `(override-style sf f args*)` transforms the text style of another sf, useful in cases where you might want to mark entire objects and their constituents differently (e.g. styling semantically "ignored" objects as grey).
 
 ## Actions
@@ -354,8 +353,7 @@ Minimal action example that shows how strings look unescaped (e.g. display `"hel
 ```clj
 (rx/defaction ::unescape [x]
   (when (string? x)
-    #(rx/stream-as-is 
-       (rx/as x (rx/raw-string x {:fill :string})))))
+    #(rx/as x (rx/raw-string x {:fill :string}))))
 ```
 
 As mentioned earlier, there is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e01_loom_formatters_and_actions.clj) that shows how actions and formatting can build on each other to aid with data exploration:
