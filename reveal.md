@@ -26,21 +26,21 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.185"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.186"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 Here is an example alias you can put into your user `deps.edn`:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.185"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.186"}}
          :ns-default vlaaad.reveal
          :exec-fn repl}
 ```
 
 If you are using older version of `clj` (before [1.10.1.672](https://insideclojure.org/2020/09/04/clj-exec/)), you can use this main-style alias:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.185"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.186"}}
          :main-opts ["-m" "vlaaad.reveal" "repl"]}
 ```
 
@@ -408,7 +408,7 @@ Reveal provides an access to various built-in components:
   {:fx/type rx/ref-watch-latest-view
    :ref (rx/observable my-int-atom (juxt dec identity inc))}
   ```
-- `observable-view` allows deriving the whole cljfx component from `IRef` state, and showing it updated live whenever the ref is mutated. There is [an example](https://github.com/vlaaad/reveal/blob/master/examples/e02_integrant_live_system_view.clj) showing how it can be used for creating live monitor and controls for [integrant](https://github.com/weavejester/integrant)-managed app state.
+- `observable-view` allows deriving the whole cljfx component from `IRef` state (or any other observable data source), and showing it updated live whenever the ref is mutated. There is [an example](https://github.com/vlaaad/reveal/blob/master/examples/e02_integrant_live_system_view.clj) showing how it can be used for creating live monitor and controls for [integrant](https://github.com/weavejester/integrant)-managed app state.
 - `derefable-view` asynchronously derefs a blocking derefable (e.g. future or promise);
 - `table-view` shows a table. Unlike `view:table` action, it does not guess the columns, instead you need to provide them yourself, for example:
    ```clj
