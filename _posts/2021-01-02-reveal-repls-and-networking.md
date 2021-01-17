@@ -99,7 +99,7 @@ clj \
 Reveal can talk to this prepl server out of the box with its [remote-prepl](https://vlaaad.github.io/reveal/#remote-prepl):
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.182"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.188"}}}' \
 -X vlaaad.reveal/remote-prepl \
 :port 5555
 
@@ -128,7 +128,7 @@ clj \
 Machine B, that uses Reveal to connect to C while acting as a REPL server:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.182"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.188"}}}' \
 -X clojure.core.server/start-server \
 :name '"reveal"' \
 :accept vlaaad.reveal/remote-prepl \
