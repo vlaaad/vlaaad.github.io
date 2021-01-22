@@ -26,21 +26,21 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.2.186"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.193"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 Here is an example alias you can put into your user `deps.edn`:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.186"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.193"}}
          :ns-default vlaaad.reveal
          :exec-fn repl}
 ```
 
 If you are using older version of `clj` (before [1.10.1.672](https://insideclojure.org/2020/09/04/clj-exec/)), you can use this main-style alias:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.2.186"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.193"}}
          :main-opts ["-m" "vlaaad.reveal" "repl"]}
 ```
 
@@ -344,7 +344,7 @@ These sfs allow modifying some aspect of a streaming:
 
 ## Actions
 
-If selected text in Reveal UI has associated value, requesting a context menu on it will show a popup that checks all registered actions and suggest applicable ones. Use `(defaction id [x ann?] body*)` macro to register new actions.
+If selected text in Reveal UI has associated value, requesting a context menu on it will show a popup that checks all registered actions and suggests ones that apply. Use `(defaction id [x ann?] body*)` macro to register new actions.
 
 Action body should return a 0-arg function to indicate that this action is available: this function will be executed when the action is selected in the context menu popup. Any other results, including thrown exceptions are ignored. The action body should be reasonobly fast (e.g. not performing disk IO) since all actions are always checked when the user asks for a popup. Returned function, on the other hand, may block for as long as needed: Reveal will show a loading indicator while it's executed.
 
@@ -359,6 +359,8 @@ Minimal action example that shows how strings look unescaped (e.g. display `"hel
 As mentioned earlier, there is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e01_loom_formatters_and_actions.clj) that shows how actions and formatting can build on each other to aid with data exploration:
 
 ![Actions demo](/assets/reveal/custom-actions.gif)
+
+You can execute registered actions programmatically by calling `(execute-action id x ann?)` — it will return future with execution result (that will be completed exceptionally if action is unavailable for supplied value). All built-in actions have `vlaaad.reveal.action` ns.
 
 ## Views
 
@@ -422,9 +424,16 @@ Reveal provides an access to various built-in components:
    A bigger example that combines observable and table views to always show last tapped value as a table can be found [here](https://github.com/vlaaad/reveal/blob/master/examples/e04_tap_to_table.clj).
 - chart views: `pie-chart-view`, `bar-chart-view`, `line-chart-view` and `scatter-chart-view`. They do not try to guess the shape of data in the same way that their corresponding actions do, e.g. line chart data sequence always has to be labeled even when there is only one data series:
   ```clj
-  {:fx/type line-chart-view
+  {:fx/type rx/line-chart-view
    :data #{(map #(* % %) (range 100))}}
   ```
+- action view executes action on a value and displays execution result:
+  ```clj
+  {:fx/type rx/action-view
+   :action :vlaaad.reveal.action/java-bean
+   :value *ns*}
+  ```
+  All built-in actions have `vlaaad.reveal.action` ns.
 
 ### Pluggable context menu
 
@@ -439,6 +448,38 @@ Fancy visualizations don't have to be leaf nodes that you can only look at — w
 This description shows label that you can request a context menu on, and its popup will suggest acions on `clojure.core` ns. There is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e03_chess_server_popups.clj) showing how to create a custom view for a chess server that displays active games as chess boards and allows inspecting any piece:
 
 ![Custom views demo](/assets/reveal/custom-views.gif)
+
+# Interacting with Reveal from code
+
+If value submitted to Reveal window is a map with `:vlaaad.reveal/command` key, instead of being shown in the output panel it will be interpreted as a command that will change the UI. There are 2 types of commands.
+
+## Predefined commands
+
+There is a set of built-in commands defined in `vlaaad.reveal.ext` namespace that you can evaluate to control Reveal window:
+- `(submit value)` - submits a value to the output panel (even if the value is a command);
+- `(clear-output)` - clears the output panel;
+- `(open-view value)` - opens value in a result panel;
+- `(all ...commands)` - executes a sequence of commands at once;
+- `(dispose)` - disposes Reveal window.
+
+## Evaluated command forms
+
+You can evaluate code in a JVM that runs Reveal by submitting a map that has a code form on its `:vlaaad.reveal/command` key, for example:
+```clj
+{:vlaaad.reveal/command '(clear-output)}
+```
+The benefit of using this form is that you don't need to have Reveal on the classpath to construct this map, which makes it suitable for use cases where reveal might not be on the classpath, for example it can be in a committed code that taps some values during system startup that is used in development, but ignored in production. It also can be used to control Reveal when it's using remote prepls, e.g. talking to ClojureScript environment where it's impossible to have Reveal on the classpath.
+
+By default the form will be evaluated in `vlaaad.reveal.ext` ns, but that is configurable with `:ns` key.
+
+You can also supply `:env` — a map of symbols to arbitrary values that will be resolvable when evaluated. This map is useful when you want to pass a value to code form without embedding it in the form, for example:
+```clj
+;; show public vars of this ns as table
+{:vlaaad.reveal/command '(open-view {:fx/type action-view
+                                     :action :vlaaad.reveal.action/view:table
+                                     :value v})
+ :env {'v (ns-publics *ns*)}}
+```
 
 # Closing thoughts
 
