@@ -128,6 +128,7 @@ Reveal was designed to be performant: it can stream syntax-highlighted output ve
   - get meta if a selected value has some meta;
   - convert java array to vector;
   - view the color of a thing that describes a color (like `"#fff"` or `:red`);
+- ability to interact with Reveal and trigger inspections from the REPL.
 
 # Using Reveal
 
