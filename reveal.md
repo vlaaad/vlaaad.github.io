@@ -273,33 +273,26 @@ Sometimes this setup is not ideal: you might want to start an application using 
    ```
 3. Create a "local repl" run configuration with "clojure.main" repl type, make it "Run with Deps" with `remote-repl` alias, and in Parameters specify `-m vlaaad.remote-repl :port 5555`.
 
-## Calva and emacs/spacemacs
-
-For those IDE, the two following sections could be applied, depending on your environment, working for [calva] (https://calva.io/reveal/), spacemacs.
-
 ## Nrepl-based editors
 
-For development workflows that require nrepl Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. The minimum required version of nrepl is `0.6.0`.
+For development workflows that require nrepl (e.g. calva, emacs with cider) Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. The minimum required version of nrepl is `0.6.0`.
 
 Example of using this middleware with command line nrepl entry point:
 ```sh
-$ clj -A:reveal -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
+$ clj -A:reveal:nrepl -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
 ```
 Alternatively, you can create [.nrepl.edn](https://nrepl.org/nrepl/usage/server.html#server-options) file in your project directory that will be picked up by nrepl. Example `.nrepl.edn` file:
 
 ```clj
 {:middleware [vlaaad.reveal.nrepl/middleware]}
 ```
-
-## Leiningen
-[Leiningen](https://github.com/technomancy/leiningen) is a special case for nrepl-based editors. So the above instructions translated in leiningen `project.clj` is:
-```
-(defproject com.example/reveal "1.0.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.10.1"]]
+If you are using leiningen, you can specify Reveal middleware in `project.clj`:
+```clj
+(defproject com.example/reveal-in-lein "1.0.0-SNAPSHOT"
+  :dependencies [[org.clojure/clojure "1.10.2"]]
   :profiles {:reveal {:dependencies [[vlaaad/reveal "1.2.186"]]
                       :repl-options {:nrepl-middleware [vlaaad.reveal.nrepl/middleware]}}})
 ```
-All further launch of the repl will also launch reveal.
 
 ## Windows
 
