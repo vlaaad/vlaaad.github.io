@@ -8,7 +8,7 @@ permalink: /reveal/
 
 | [![Clojars Project](https://img.shields.io/clojars/v/vlaaad/reveal.svg?logo=clojure&logoColor=white&style=for-the-badge)](https://clojars.org/vlaaad/reveal) | [![Github page](https://img.shields.io/badge/github-vlaaad%2Freveal-informational?logo=github&style=for-the-badge)](https://github.com/vlaaad/reveal) | [![Slack Channel](https://img.shields.io/badge/slack-%20%23reveal-blue.svg?logo=slack&style=for-the-badge)](https://clojurians.slack.com/messages/reveal/) |
 
-* auto-gen table of contents 
+* auto-gen table of contents
 {:toc}
 
 # Rationale
@@ -112,7 +112,7 @@ Finally, Reveal has scatter charts to display coordinates on a 2D plane. A coord
 
 ## Table view
 
-There are cases where it is better to make sense of the value when it is represented by a table: collections of homogeneous items where columns make it easier to compare corresponding parts of those items, and big deeply nested data structures where it's easier to look at them layer by layer. 
+There are cases where it is better to make sense of the value when it is represented by a table: collections of homogeneous items where columns make it easier to compare corresponding parts of those items, and big deeply nested data structures where it's easier to look at them layer by layer.
 
 ![Table view demo](/assets/reveal/table.gif)
 
@@ -136,7 +136,7 @@ Reveal was designed to be performant: it can stream syntax-highlighted output ve
 
 ![Concepts](/assets/reveal/concepts.png)
 
-Reveal UI is made of 3 components: 
+Reveal UI is made of 3 components:
 - output panel that contains data submitted to reveal window (e.g. repl output);
 - a context menu that can invoke actions on selected values;
 - results panel that has 1 or more tabs with action results produced from the context menu.
@@ -190,7 +190,7 @@ Clojure 1.10.1
 user=>
 ```
 
-### `io-prepl` 
+### `io-prepl`
 
 This prepl works like `clojure.core.server/io-prepl`. Its purpose is to be run in a process on your machine that you want to connect to using another prepl-aware tool. Example:
 
@@ -228,10 +228,10 @@ Example:
    js/window
 
    # output
-   {:tag :ret, 
-    :val #object [Window [object Window]], 
-    :ns "cljs.user", 
-    :ms 25, 
+   {:tag :ret,
+    :val #object [Window [object Window]],
+    :ns "cljs.user",
+    :ms 25,
     :form "js/window"}
    ```
 
@@ -266,25 +266,32 @@ Sometimes this setup is not ideal: you might want to start an application using 
    clj -A:reveal -J-Dclojure.server.repl='{:port 5555 :accept vlaaad.reveal/repl}'
    ```
 2. Add a dependency on [remote-repl](https://github.com/vlaaad/remote-repl) to your `deps.edn`:
-   
+
    ```clj
-   {:aliases 
+   {:aliases
     {:remote-repl {:extra-deps {vlaaad/remote-repl {:mvn/version "1.1"}}}}}
    ```
 3. Create a "local repl" run configuration with "clojure.main" repl type, make it "Run with Deps" with `remote-repl` alias, and in Parameters specify `-m vlaaad.remote-repl :port 5555`.
 
 ## Nrepl-based editors
 
-For development workflows that require nrepl Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. The minimum required version of nrepl is `0.6.0`.
+For development workflows that require nrepl (e.g. calva, emacs with cider) Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. The minimum required version of nrepl is `0.6.0`.
 
 Example of using this middleware with command line nrepl entry point:
 ```sh
-$ clj -A:reveal -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
+$ clj -A:reveal:nrepl -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
 ```
 Alternatively, you can create [.nrepl.edn](https://nrepl.org/nrepl/usage/server.html#server-options) file in your project directory that will be picked up by nrepl. Example `.nrepl.edn` file:
 
 ```clj
 {:middleware [vlaaad.reveal.nrepl/middleware]}
+```
+If you are using leiningen, you can specify Reveal middleware in `project.clj`:
+```clj
+(defproject com.example/reveal-in-lein "1.0.0-SNAPSHOT"
+  :dependencies [[org.clojure/clojure "1.10.2"]]
+  :profiles {:reveal {:dependencies [[vlaaad/reveal "1.2.186"]]
+                      :repl-options {:nrepl-middleware [vlaaad.reveal.nrepl/middleware]}}})
 ```
 
 ## Windows
@@ -417,9 +424,9 @@ Reveal provides an access to various built-in components:
    ```clj
    {:fx/type rx/table-view
     :items [:foo :foo/bar :foo/bar/baz :+]
-    :columns [{:fn namespace} 
-              {:fn name} 
-              {:fn #(resolve (symbol %)) 
+    :columns [{:fn namespace}
+              {:fn name}
+              {:fn #(resolve (symbol %))
                :header 'resolve}]}
    ```
    A bigger example that combines observable and table views to always show last tapped value as a table can be found [here](https://github.com/vlaaad/reveal/blob/master/examples/e04_tap_to_table.clj).
