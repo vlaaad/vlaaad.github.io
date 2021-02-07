@@ -489,6 +489,23 @@ You can also supply `:env` — a map of symbols to arbitrary values that will be
  :env {'v (ns-publics *ns*)}}
 ```
 
+# Reveal in media
+
+I gave 2 talks about Reveal:
+- [Reclojure 2020](https://www.youtube.com/watch?v=jq-7aiXPRKs), 24 minutes;
+- [Scicloj meeting](https://www.youtube.com/watch?v=hm7LoqvaYXk), 2 hours including Q&A, cljfx and live demo.
+
+Other videos about Reveal:
+- [Practicalli](https://www.youtube.com/watch?v=1jy09_16EeY) demo, 5 minutes;
+- [REPL Driven Development, Clojure's Superpower](https://www.youtube.com/watch?v=gIoadGfm5T8) by Sean Corfield (1h15m), not about Reveal per se, but uses Reveal extensively.
+
+I also talked about Reveal on [defn](https://soundcloud.com/defn-771544745/65-vlad-protsenko) podcast (1h30m).
+
+Various written setups instructions using Reveal:
+- [Practicalli](https://practicalli.github.io/clojure/clojure-tools/data-browsers/reveal.html) page describes Reveal setup for CLI, nrepl editors, emacs (using cider) and rebel-readline;
+- [Calva](https://calva.io/reveal/) page describes vscode setup with Calva extension (using both tools-deps and leiningen examples);
+- my [blog post](https://vlaaad.github.io/reveal-repls-and-networking) describes various Reveal socket REPL setups that talk with remote processes.
+
 # Closing thoughts
 
 If repl is a window to a running program, then Reveal is an open door — and you are welcome to come in. I get a lot of leverage from the ability to inspect any object I see, and I hope you will find Reveal useful too.
