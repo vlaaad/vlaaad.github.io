@@ -26,21 +26,21 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.194"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.195"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 Here is an example alias you can put into your user `deps.edn`:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.194"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.195"}}
          :ns-default vlaaad.reveal
          :exec-fn repl}
 ```
 
 If you are using older version of `clj` (before [1.10.1.672](https://insideclojure.org/2020/09/04/clj-exec/)), you can use this main-style alias:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.194"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.195"}}
          :main-opts ["-m" "vlaaad.reveal" "repl"]}
 ```
 
@@ -501,7 +501,7 @@ Other videos about Reveal:
 
 I also talked about Reveal on [defn](https://soundcloud.com/defn-771544745/65-vlad-protsenko) podcast (1h30m).
 
-Various written setups instructions using Reveal:
+Various written setup instructions using Reveal:
 - [Practicalli](https://practicalli.github.io/clojure/clojure-tools/data-browsers/reveal.html) page describes Reveal setup for CLI, nrepl editors, emacs (using cider) and rebel-readline;
 - [Calva](https://calva.io/reveal/) page describes vscode setup with Calva extension (using both tools-deps and leiningen examples);
 - my [blog post](https://vlaaad.github.io/reveal-repls-and-networking) describes various Reveal socket REPL setups that talk with remote processes.
