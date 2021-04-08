@@ -26,21 +26,21 @@ Not being limited to text, Reveal uses judicious syntax highlighting to aid in d
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.199"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.206"}}}' \
 -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 Here is an example alias you can put into your user `deps.edn`:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.199"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.206"}}
          :ns-default vlaaad.reveal
          :exec-fn repl}
 ```
 
 If you are using older version of `clj` (before [1.10.1.672](https://insideclojure.org/2020/09/04/clj-exec/)), you can use this main-style alias:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.199"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.206"}}
          :main-opts ["-m" "vlaaad.reveal" "repl"]}
 ```
 
