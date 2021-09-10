@@ -5,3 +5,9 @@ permalink: /reveal-pro
 ---
 
 TODO...
+
+How to manage cancellation
+
+terms of service
+
+privacy policy
