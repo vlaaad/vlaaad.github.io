@@ -5,5 +5,5 @@ $pro_version = (curl -s https://clojars.org/api/artifacts/dev.vlaaad/reveal-pro 
 (Get-Content .\reveal-pro.md) | ForEach-Object {$_ -replace 'dev.vlaaad/reveal-pro {:mvn/version ".+"',"dev.vlaaad/reveal-pro {:mvn/version `"$free_version`""} | Set-Content .\reveal-pro.md
 
 git add . 
-git commit -am "$free_version"
+git commit -am "Free: $free_version, Pro: $pro_version"
 git push

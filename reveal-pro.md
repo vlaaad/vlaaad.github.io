@@ -23,7 +23,7 @@ Reveal Pro costs $9.99 per month — [start a trial](https://buy.stripe.com/8wM9
 
    ```sh
    $ clj \
-     -Sdeps '{:deps {dev.vlaaad/reveal-pro {:mvn/version "1.3.241"}}}' \
+     -Sdeps '{:deps {dev.vlaaad/reveal-pro {:mvn/version "1.3.214"}}}' \
      -X vlaaad.reveal/repl
    ```
 
