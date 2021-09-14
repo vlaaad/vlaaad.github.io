@@ -15,9 +15,11 @@ Reveal stands for Read Eval Visualize Loop, it's a REPL output pane that lives i
 
 Reveal Pro is a fork of Reveal that has everything there is in Reveal and more. While Reveal intends to be infinitely extensible tool for inspecting and developing Clojure programs, Reveal Pro aims to be batteries included so you can focus on your problems with data you need, available as soon as you need it.
 
-Reveal Pro costs $9.99 per month — [start a trial](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}!
+Reveal Pro costs $9.99 per month — [start a free trial](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}!
 
 # Getting started
+
+It takes 3 steps:
 
 1. Add a dependency on Reveal Pro, e.g.
 
@@ -27,9 +29,9 @@ Reveal Pro costs $9.99 per month — [start a trial](https://buy.stripe.com/8wM9
      -X vlaaad.reveal/repl
    ```
 
-2. [Start a trial here](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}.
+2. [Start a free trial here](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}.
 
-3. Once you start a trial, you'll receive an email with Reveal Pro license key — paste it into a license input field. 
+3. Once you start a trial, you'll receive an email with Reveal Pro license key — paste it into a license input field in Reveal Pro window. 
 
 You are good to go!
 
@@ -67,15 +69,12 @@ Reveal Pro adds support for Java's file system APIs that allow navigating folder
 
 ## ...And more are on the way
 
-I intend to add more features in the future, like:
-- database exploration support (e.g. Datomic);
-- more specification sources for Forms (e.g. Malli).
+You can stay up to date and talk to me or other Reveal users in [#reveal](https://clojurians.slack.com/messages/reveal/) channel of Clojurians slack.
 
 # Subscription management and cancellation
 
+After your trial period, you will automatically be billed monthly. You may cancel your subscription at any time. You are responsible for the full subscription fee in the monthly billing cycle in which you cancel. Once your account has been billed, all sales are final and there will be no refunds. You'll be able to continue using Reveal Pro after cancellation until the end of the billing cycle.
 
-How to manage cancellation
+When you start a trial and receive a license key, you'll also get a subscription management link where you'll be able to change the payment method or cancel the subscription. You can also write to [reveal@vlaaad.dev](mailto:reveal@vlaaad.dev) to request cancellation. 
 
-terms of service
-
-privacy policy
+See also: [terms of service](terms) and [privacy policy](privacy).
