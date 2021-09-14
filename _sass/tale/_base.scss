@@ -65,3 +65,18 @@ img {
 td {
   vertical-align: top;
 }
+
+a.buy-button {
+  text-decoration: none;
+  padding: 0 .25em;
+  color: $default-color;
+  background-color: rgb(104, 255, 104);
+  border-style: solid;
+  border-color: green;
+  border-width: 1px 1px 2px 1px;
+  border-radius: 3px;
+  &:link {text-decoration: none;}
+  &:visited {text-decoration: none;}
+  &:hover {text-decoration: none; background-color: rgb(169, 255, 169);}
+  &:active {text-decoration: none;}
+}
