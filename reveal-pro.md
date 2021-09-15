@@ -11,15 +11,13 @@ permalink: /reveal-pro
 
 # What is Reveal Pro
 
-Reveal stands for Read Eval Visualize Loop, it's a REPL output pane that lives in the JVM and provides powerful data inspection capabilities.
-
-Reveal Pro is a fork of Reveal that has everything there is in Reveal and more. While Reveal intends to be infinitely extensible tool for inspecting and developing Clojure programs, Reveal Pro aims to be batteries included so you can focus on your problems with data you need, available as soon as you need it.
+Reveal Pro is an improved version of [Reveal](/reveal/) that aims to be batteries included so you can focus on your problems with data you need, available as soon as you need it. 
 
 Reveal Pro costs $9.99 per month — [start a free trial](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}!
 
 # Getting started
 
-It takes 3 steps:
+Here are the steps needed to start using Reveal Pro:
 
 1. Add a dependency on Reveal Pro, e.g.
 
@@ -77,4 +75,4 @@ After your trial period, you will automatically be billed monthly. You may cance
 
 When you start a trial and receive a license key, you'll also get a subscription management link where you'll be able to change the payment method or cancel the subscription. You can also write to [reveal@vlaaad.dev](mailto:reveal@vlaaad.dev) to request cancellation. 
 
-See also: [terms of service](terms) and [privacy policy](privacy).
+See also: [terms of service](/reveal-pro/terms) and [privacy policy](/reveal-pro/privacy).
