@@ -11,7 +11,9 @@ permalink: /reveal-pro
 
 # What is Reveal Pro
 
-Reveal Pro is an improved version of [Reveal](/reveal/) that aims to be batteries included so you can focus on your problems with data you need, available as soon as you need it. 
+Reveal Pro is an improved version of [Reveal](/reveal/) that aims to be batteries included so you can focus on your problems with data and knowledge you need, available as soon as you need it. 
+
+It is a fork of Reveal that should be used instead of Reveal, not alongside it.
 
 Reveal Pro costs $9.99 per month — [start a free trial](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}!
 
@@ -33,11 +35,15 @@ Here are the steps needed to start using Reveal Pro:
 
 You are good to go!
 
+# Configuration
+
+Everything the applies to Reveal also applies to Reveal Pro (sans the dependency coordinate), see [Reveal docs](/reveal/) for all available configuration options and instructions.
+
 # Unique features
 
 ## Forms
 
-Forms allow you to convert data structure specifications to UI input components that look like a specified data structure. This is a generic and multi-purpose tool that supports Clojure spec out of the box and can be extended to other data specification libraries.
+Forms allow you to convert data structure specifications to UI input components for creating these data structures. This is a generic and multi-purpose tool that supports Clojure spec out of the box and can be extended to other data specification libraries.
 
 What leverage can it give you?
 
@@ -59,7 +65,19 @@ What leverage can it give you?
 
    ![contextual help demo](/assets/reveal-pro/create.gif)
 
-## File system support
+Forms are available either with:
+- `form:spec` contextual action on Clojure specs;
+- `vlaaad.reveal.pro.form` ns that allows creating fine grained forms as well as reactive views that update on form state changes, e.g.:
+  ```clj
+  (require '[vlaaad.reveal.pro.form :as form]
+           '[clojure.spec.alpha :as s])
+
+  {:fx/type form/form-view
+   :form (form/spec-alpha-form `ns)}
+  ```
+  After evaluating this map, you can select `view` action on it in Reveal Pro window to see the form. Tip: see [Interacting with Reveal from code](/reveal/#interacting-with-reveal-from-code) to be able to immediately open the form without having to interact with Reveal window.
+
+## File system navigation
 
 Reveal Pro adds support for Java's file system APIs that allow navigating folders and zip/jar archives. Explore your classpath:
 
@@ -71,8 +89,8 @@ You can stay up to date and talk to me or other Reveal users in [#reveal](https:
 
 # Subscription management and cancellation
 
-After your trial period, you will automatically be billed monthly. You may cancel your subscription at any time. You are responsible for the full subscription fee in the monthly billing cycle in which you cancel. Once your account has been billed, all sales are final and there will be no refunds. You'll be able to continue using Reveal Pro after cancellation until the end of the billing cycle.
+When you start a trial and receive a license key, you'll also get a subscription management link where you'll be able to change the payment method or cancel the subscription. You can also write to [reveal@vlaaad.dev](mailto:reveal@vlaaad.dev) to request cancellation.
 
-When you start a trial and receive a license key, you'll also get a subscription management link where you'll be able to change the payment method or cancel the subscription. You can also write to [reveal@vlaaad.dev](mailto:reveal@vlaaad.dev) to request cancellation. 
+After your trial period, you will automatically be billed monthly. You may cancel your subscription at any time. You are responsible for the full subscription fee in the monthly billing cycle in which you cancel. Once your account has been billed, all sales are final and there will be no refunds. You'll be able to continue using Reveal Pro after cancellation until the end of the billing cycle.
 
 See also: [terms of service](/reveal-pro/terms) and [privacy policy](/reveal-pro/privacy).

@@ -22,6 +22,8 @@ You are required to pay a subscription fee to use Reveal Pro. You agree to provi
 
 A License Key allows you to use Reveal Pro. License Key is evidence provided to you by me of your subscription. You must ensure that no more than one user uses a given License Key concurrently.
 
+You must not sell or otherwise commercialise Reveal Pro or its derivatives as a developer tooling product.
+
 # Free trial
 
 I offer a 7-day free trial to new users of Reveal Pro. You will be charged according to your subscription at the end of the free trial.

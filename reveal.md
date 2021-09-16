@@ -21,6 +21,10 @@ Unlike datafy/nav based tools, Reveal does not enforce a particular data represe
 
 Not being limited to text, Reveal uses judicious syntax highlighting to aid in differentiating various objects: text `java.lang.Integer` looks differently depending on whether it was produced from a symbol or a class.
 
+# Reveal Pro
+
+Reveal aims to be an extensible tool suitable for helping with development of any Clojure program. [Reveal Pro](/reveal-pro){: .buy-button} provides a set of extensions that improve developer experience by providing more tools so you can focus on your problem with data and knowledge you need, available as soon as you need it.
+
 # Give it a try
 
 The easiest way to try it is to run a Reveal repl:
@@ -58,6 +62,18 @@ You can evaluate code on any selected value by using text input in the context m
 
 ![Eval on selection demo](/assets/reveal/eval-on-selection.gif)
 
+## Forms
+
+This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. Forms allow you to convert data structure specifications (e.g. Clojure specs) to UI input components for creating these data structures. This is a generic and multi-purpose tool that can be used for:
+
+- learning possible shapes of expected data;
+- exploring data-driven APIs;
+- creating data structures with contextual help.
+
+Here is how it looks like:
+
+![ns form demo](/assets/reveal-pro/ns-form.gif)
+
 ## Inspect object fields and properties
 
 Any object in the JVM has class and fields, making them easily accessible for inspection is extremely important. With `java-bean` contextual action you get a debugger-like view of objects in the VM. Access to this information greatly improves the visibility of the VM and allows to explore it. For example, for any class you have on the classpath you can get the place where it's coming from:
@@ -76,6 +92,12 @@ Reveal can be configured with `vlaaad.reveal.prefs` java property to use differe
 You can open URL-like things and files: both internally in Reveal and externally using other applications in your OS e.g. file explorer, browser or text editor.
 
 ![Browse demo](/assets/reveal/browse.gif)
+
+## File system navigation
+
+This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. Use Java's file system APIs to navigate folders and zip/jar archives. Explore your classpath:
+
+![fs demo](/assets/reveal-pro/fs.gif)
 
 ## Doc and source
 
@@ -509,3 +531,5 @@ Various written setup instructions using Reveal:
 # Closing thoughts
 
 If repl is a window to a running program, then Reveal is an open door — and you are welcome to come in. I get a lot of leverage from the ability to inspect any object I see, and I hope you will find Reveal useful too.
+
+If you do, please consider supporting my work either by [sponsoring the development](https://github.com/sponsors/vlaaad) of the free version or by [buying the subscription](/reveal-pro){: .buy-button} for Pro version.
