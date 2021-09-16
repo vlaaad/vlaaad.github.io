@@ -4,6 +4,8 @@ title: "Reveal Pro:<br>Read Eval Visualize Loop for&nbsp;Clojure, Supercharged"
 permalink: /reveal-pro
 ---
 
+![Demo](/assets/reveal-pro/main.gif)
+
 | [![Clojars Project](https://img.shields.io/clojars/v/dev.vlaaad/reveal-pro.svg?logo=clojure&logoColor=white&style=for-the-badge)](https://clojars.org/dev.vlaaad/reveal-pro) | [![Slack Channel](https://img.shields.io/badge/slack-%20%23reveal-blue.svg?logo=slack&style=for-the-badge)](https://clojurians.slack.com/messages/reveal/) |
 
 * auto-gen table of contents
