@@ -87,6 +87,8 @@ Reveal Pro adds support for Java's file system APIs that allow navigating folder
 
 ## ...And more are on the way
 
+More tools are being developed for Reveal Pro that aim to solve common development problems. Particularly, database exploration is one area that I intend to improve in the future.
+
 You can stay up to date and talk to me or other Reveal users in [#reveal](https://clojurians.slack.com/messages/reveal/) channel of Clojurians slack.
 
 # Subscription management and cancellation
