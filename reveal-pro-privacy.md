@@ -7,9 +7,9 @@ permalink: /reveal-pro/privacy
 This privacy policy will help you understand what I collect and how I use the data you provide to me when you use this website and Reveal Pro. 
 I reserve the right to change this policy at any given time. If you want to make sure that you are up to date with the latest changes, I advise you to frequently visit this page.
 
-# What user information I collect
+# What user information do I collect
 
-I collect your email address when you purchase Reveal Pro license to send the license information, to provide technical support and to contact you about Reveal Pro. 
+I collect your email address when you purchase the Reveal Pro license to send the license information, to provide technical support, and to contact you about Reveal Pro. 
 
 # Third parties
 
@@ -24,7 +24,7 @@ I use third party services that can collect more information about you:
 
 You may request to remove your information by writing to [reveal@vlaaad.dev](mailto:reveal@vlaaad.dev). I may retain this information if it is required to comply with legal obligations.
 
-You may also request a copy of information I have about you by writing to [reveal@vlaaad.dev](mailto:reveal@vlaaad.dev).
+You may also request a copy of the information I have about you by writing to [reveal@vlaaad.dev](mailto:reveal@vlaaad.dev).
 
 # Contact me
 

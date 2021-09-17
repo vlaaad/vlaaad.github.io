@@ -33,7 +33,7 @@ Here are the steps needed to start using Reveal Pro:
 
 2. [Start a free trial here](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}.
 
-3. Once you start a trial, you'll receive an email with Reveal Pro license key — paste it into a license input field in Reveal Pro window. 
+3. Once you start a trial, you'll receive an email with the Reveal Pro license key — paste it into a license input field in the Reveal Pro window. 
 
 You are good to go!
 
@@ -63,7 +63,7 @@ What leverage can it give you?
 
 3. Create data structures with contextual help
 
-   Forms provide contextual actions and information on selectable parts of data structures that you can activate by pressing <kbd>F1</kbd> or <kbd>Ctrl Space</kbd>. For example, with spec forms you can use fine-grained generators to generate parts of the data structures. You can also copy and paste these data structures as text:
+   Forms provide contextual actions and information on selectable parts of data structures that you can activate by pressing <kbd>F1</kbd> or <kbd>Ctrl Space</kbd>. For example, with spec forms, you can use fine-grained generators to generate parts of the data structures. You can also copy and paste these data structures as text:
 
    ![contextual help demo](/assets/reveal-pro/create.gif)
 
