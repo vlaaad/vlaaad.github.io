@@ -31,7 +31,7 @@ The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
 -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.214"}}}' \
--m vlaaad.reveal repl
+-M -m vlaaad.reveal repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
