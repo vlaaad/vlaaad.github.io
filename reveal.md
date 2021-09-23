@@ -48,6 +48,14 @@ If you are using older version of `clj` (before [1.10.1.672](https://insidecloju
          :main-opts ["-m" "vlaaad.reveal" "repl"]}
 ```
 
+## Prerequisities
+
+Notice that you need a JDK with JavaFX. Since JDK v11, only the Oracle JDK and [Zulu with FX](https://www.azul.com/downloads/?package=jdk-fx) has JavaFX built in. For others such as AdpotOpenJDK you need to add a dependency on openjfx (as of FX 17, [it is required](https://openjfx.io/openjfx-docs/) to have a recent version of JDK 16, or at least JDK 11):
+
+```
+[org.openjfx/javafx-controls "17"] ; the latest - or v. 11 LTS
+```
+
 # Features
 
 ## `tap>` support
