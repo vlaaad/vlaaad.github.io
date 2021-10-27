@@ -62,6 +62,19 @@ You can evaluate code on any selected value by using text input in the context m
 
 ![Eval on selection demo](/assets/reveal/eval-on-selection.gif)
 
+## SQL DB explorer
+
+This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. You can view DB schema and browse relational data across multiple tables using a `db:explore` action available on JDBC connection source descriptions (e.g. DataSource instances, JDBC URL strings or db spec maps if you use [next.jdbc](https://github.com/seancorfield/next-jdbc) or [clojure.java.jdbc](https://github.com/clojure/java.jdbc)):
+
+<video controls><source src="/assets/reveal-pro/db-explore-table.mp4" type="video/mp4"></source></video>
+
+## Inspect object fields and properties
+
+Any object in the JVM has class and fields, making them easily accessible for inspection is extremely important. With `java-bean` contextual action you get a debugger-like view of objects in the VM. Access to this information greatly improves the visibility of the VM and allows to explore it. For example, for any class you have on the classpath you can get the place where it's coming from:
+
+![Java bean demo](/assets/reveal/java-bean.gif)
+I learned about it after implementing this feature :)
+
 ## Forms
 
 This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. Forms allow you to convert data structure specifications (e.g. Clojure specs) to UI input components for creating these data structures. This is a generic and multi-purpose tool that can be used for:
@@ -73,13 +86,6 @@ This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. Form
 Here is how it looks like:
 
 ![ns form demo](/assets/reveal-pro/ns-form.gif)
-
-## Inspect object fields and properties
-
-Any object in the JVM has class and fields, making them easily accessible for inspection is extremely important. With `java-bean` contextual action you get a debugger-like view of objects in the VM. Access to this information greatly improves the visibility of the VM and allows to explore it. For example, for any class you have on the classpath you can get the place where it's coming from:
-
-![Java bean demo](/assets/reveal/java-bean.gif)
-I learned about it after implementing this feature :)
 
 ## Look and feel customization
 
