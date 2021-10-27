@@ -66,7 +66,7 @@ You can evaluate code on any selected value by using text input in the context m
 
 This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. You can view DB schema and browse relational data across multiple tables using a `db:explore` action available on JDBC connection source descriptions (e.g. DataSource instances, JDBC URL strings or db spec maps if you use [next.jdbc](https://github.com/seancorfield/next-jdbc) or [clojure.java.jdbc](https://github.com/clojure/java.jdbc)):
 
-<video controls><source src="/assets/reveal-pro/db-explore-table.mp4" type="video/mp4"></source></video>
+<video controls><source src="/assets/reveal-pro/db-full-demo.mp4" type="video/mp4"></source></video>
 
 ## Inspect object fields and properties
 
