@@ -15,15 +15,13 @@ permalink: /reveal/
 
 Repl is a great window into a running program, but the textual nature of its output limits developer's ability to inspect the program: a text is not an object, and we are dealing with objects in the VM.
 
-Reveal aims to solve this problem by creating an in-process repl output pane that makes inspecting values as easy as selecting an interesting datum. It recognizes the value of text as a universal interface, that's why its output looks like a text: you can select it, copy it, save it into a file. Unlike text, reveal output holds references to printed values, making inspecting selected value a matter of opening a context menu.
+Reveal aims to solve this problem by providing a set of tools for the JVM — like REPL output pane and inspector popups — that make exploring objects as easy as pointing at them. It recognizes the value of text as a universal interface, that's why its output looks like a text by default: you can select it, copy it, save it into a file. Unlike text, Reveal output panels hold references to printed values, making inspecting selected value a matter of opening a context menu.
 
-Unlike datafy/nav based tools, Reveal does not enforce a particular data representation for any given object, making it an open set — that includes datafy/nav as one of the available options. It does not use datafy/nav by default because in the absence of inter-process communication to datafy is to lose.
-
-Not being limited to text, Reveal uses judicious syntax highlighting to aid in differentiating various objects: text `java.lang.Integer` looks differently depending on whether it was produced from a symbol or a class.
+Not being limited to a stream of characters, Reveal uses judicious syntax highlighting to aid in differentiating various objects: text `java.lang.Integer` looks differently depending on whether it was produced from a symbol or a class.
 
 # Reveal Pro
 
-Reveal aims to be an extensible tool suitable for helping with development of any Clojure program. [Reveal Pro](/reveal-pro){: .buy-button} provides a set of extensions that improve developer experience by providing more tools so you can focus on your problem with data and knowledge you need, available as soon as you need it.
+Reveal aims to be an extensible tool suitable for helping with development of any Clojure program. [Reveal Pro](/reveal-pro){: .buy-button} provides a set of extensions that improve developer experience by providing more integrated tools so you can focus on your problem with data and knowledge you need, available as soon as you need it.
 
 # Give it a try
 
@@ -31,7 +29,7 @@ The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
 -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.249"}}}' \
--M -m vlaaad.reveal repl
+-X vlaaad.reveal/repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
@@ -52,9 +50,13 @@ If you are using older version of `clj` (before [1.10.1.672](https://insidecloju
 
 ## `tap>` support
 
-Clojure 1.10 added `tap>` function with the purpose similar to printing the value for debugging, but instead of characters you get the object. Reveal repls show tapped values in their output windows — you won't need `println` anymore!
+Clojure 1.10 added `tap>` function with the purpose similar to printing the value for debugging, but instead of characters you get the object. Reveal REPLs show tapped values in their output windows — you won't need `println` anymore!
 
 ![Tap demo](/assets/reveal/tap.gif)
+
+If you don't want to use Reveal as a REPL output pane, you can instead use a tap log sticker (always-on-top) window:
+
+<video controls><source src="/assets/reveal/tap-log.mp4" type="video/mp4"></source></video>
 
 ## Eval on selection
 
@@ -67,6 +69,10 @@ You can evaluate code on any selected value by using text input in the context m
 This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. You can view DB schema and browse relational data across multiple tables using a `db:explore` action available on JDBC connection source descriptions (e.g. DataSource instances, JDBC URL strings or db spec maps if you use [next.jdbc](https://github.com/seancorfield/next-jdbc) or [clojure.java.jdbc](https://github.com/clojure/java.jdbc)):
 
 <video controls><source src="/assets/reveal-pro/db-full-demo.mp4" type="video/mp4"></source></video>
+
+## Inspector sticker window
+
+You can open a temporary popup window for any value in the REPL either by calling `(vlaaad.reveal/inspect x)` fn, or by using `#reveal/inspect x` reader tag.
 
 ## Inspect object fields and properties
 
@@ -175,14 +181,16 @@ You can navigate around values as you do it in text editors by using arrow keys.
 
 - Use <kbd>Space</kbd>, <kbd>Enter</kbd> or right mouse button to open a context menu on selection;
 - Use <kbd>Tab</kbd> to switch focus between output and results panel;
+- Use <kbd>F11</kbd> or <kbd>Ctrl M</kbd> to maximize/unmaximize the window;
 - In results panel:
   - Use <kbd>Ctrl ←</kbd> and <kbd>Ctrl →</kbd> to switch tabs in results panel;
-  - Use <kbd>Ctrl ↑</kbd> to open result panel's tab tree that provides a hierarchical overview of all tabs in this panel;
+  - Use <kbd>Ctrl ↑</kbd> to open result panel's tab tree that provides a hierarchical overview of all tabs in this panel, where <kbd>Backspace</kbd> can be used to close views;
   - Use <kbd>Esc</kbd> to close the tab
 - In a context menu:
   - Use <kbd>↑</kbd> and <kbd>↓</kbd> to move focus between available actions and input text field;
   - Use <kbd>Enter</kbd> to execute selected action or form written in the text field;
-  - Use <kbd>Ctrl Enter</kbd> to display action result in new results panel;
+  - Use <kbd>Ctrl Enter</kbd> to display action result in a new results panel;
+  - Use <kbd>Shift Enter</kbd> to display action result in a new inspector sticker (always-on-top) window;
   - Use <kbd>Esc</kbd> to close the context menu.
 
 ### Structural navigation
@@ -209,11 +217,11 @@ The main entry point to Reveal is `vlaaad.reveal` ns that has various repls and 
 
 ### `repl`
 
-It is a repl wraps `clojure.main/repl` with additional support for `:repl/quit` and `tap>`. It is as simple as it gets. I use it all the time. Example:
+It is a repl that wraps `clojure.main/repl` with additional support for `:repl/quit` and `tap>`. It is as simple as it gets. I use it all the time. Example:
 
 ```sh
-$ clj -A:reveal -m vlaaad.reveal repl
-# Reveal window appears
+$ clj -A:reveal -M -m vlaaad.reveal repl :always-on-top true
+# Reveal sticker window appears
 Clojure 1.10.1
 user=>
 ```
@@ -224,14 +232,14 @@ This prepl works like `clojure.core.server/io-prepl`. Its purpose is to be run i
 
 ```sh
 $ clj -A:reveal \
--J-Dclojure.server.reveal='{:port 5555 :accept vlaaad.reveal/io-prepl}'
+-J-Dclojure.server.reveal='{:port 5555 :accept vlaaad.reveal/io-prepl :args [:always-on-top true]}'
 ```
-Now you can connect to this process using any socket repl and it will show a Reveal window for every connection:
+Now you can connect to this process using any socket repl and it will show a new Reveal sticker (always-on-top) window for every connection:
 ```sh
 $ nc localhost 5555
-# reveal window appears
+# Reveal sticker window appears
 (+ 1 2 3) # input
-{:tag :ret, :val "6", :ns "user", :ms 1, :form "(+ 1 2 3)"} # output
+{:tag :ret, :val "6", :ns "user", :ms 1, :form "(+ 1 2 3)"} # output (+ displayed in Reveal)
 ```
 
 ### `remote-prepl`
@@ -247,7 +255,7 @@ Example:
    ```
 2. Connect to that prepl using Reveal:
    ```
-   $ clj -A:reveal -m vlaaad.reveal remote-prepl :port 50505
+   $ clj -A:reveal -M -m vlaaad.reveal remote-prepl :always-on-top true :port 50505
    # at this point, 2 things happen:
    # 1. Browser window with cljs prepl appears
    # 2. Reveal window opens
@@ -269,45 +277,81 @@ Calling this function will create and show a Reveal window. It returns a functio
 
 Example:
 ```clj
-(require '[vlaaad.reveal :as reveal])
+(require '[vlaaad.reveal :as r])
 
 ;; open a window that will show tapped values:
-(add-tap (reveal/ui))
+(add-tap (r/ui))
 
  ;; submit value to the window:
 (tap> {:will-i-see-this-in-reveal-window? true})
+```
+
+### `tap-log`
+
+A better way to display tapped values in Reveal is using a specialized tap log window that will unsubscribe from the tap queue when the window is closed:
+
+```clj
+(require '[vlaaad.reveal :as r])
+
+(r/tap-log) ;; open a window that will show tapped values
+
+(tap> (all-ns))
+```
+
+### `inspect` and `#reveal/inspect`
+
+You can open a new temporary sticker window for value inspection using either `vlaaad.reveal/inspect` fn or `#reveal/inspect` reader tag:
+```clj
+#reveal/inspect (all-ns) ;; inspect all loaded namespaces
 ```
 
 # Editor integration
 
 With [user API](#user-api) you should be able to configure your editor to use Reveal, but there are still some points worthy of discussion.
 
+## REPL vs nREPL
+
+REPL is a Read-Eval-Print Loop, a programming environment that enables you to interact with a running Clojure program and modify it by evaluating one code expression at a time. It's simpler, but somewhat harder to integrate into IDEs, so it's more common to see IDEs and text editors work with nREPL instead. nREPL, despite its name, is not a REPL, but an eval RPC server that provides similar development experience. Reveal supports both — it bundles [local and remote REPLs](/reveal-repls-and-networking) for REPL-based dev setups, as well as nREPL middleware for [nREPL-based configurations](#nrepl-based-editors).
+
+## Editor commands
+
+If your editor can be configured to send predefined code forms to REPL, it might be useful to define these commands:
+
+1. Inspect last result: 
+   ```clj
+   #reveal/inspect *1
+   ```
+2. Toggle minimized state for all sticker windows:
+   ```clj
+   (vlaaad.reveal/submit-command! :always-on-top (vlaaad.reveal/toggle-minimized))
+   ```
+
 ## Cursive
 
-For Cursive, you should create a "Clojure Repl - Local" run configuration with the "clojure.main" repl type, "Run with Deps", and the "Parameters" `-m vlaaad.reveal repl` (or put those inside `:main-opts` of an alias and add that to the "Aliases" list). For prefs, use "JVM Args" input, but note that it splits args on spaces, so you should use commas, e.g. `-Dvlaaad.reveal.prefs={:theme,:light}`. This is the most simple setup that allows IDEA to start your application and establish a repl connection for sending forms.
+If you want to use REPL instead of nREPL in Cursive, you should create a "Clojure Repl - Local" run configuration with the "clojure.main" repl type, "Run with Deps", and the "Parameters" `-m vlaaad.reveal repl :always-on-top true` (or put those inside `:main-opts` of an alias and add that to the "Aliases" list). For prefs, use "JVM Args" input, but note that it splits args on spaces, so you should use commas, e.g. `-Dvlaaad.reveal.prefs={:theme,:light}`. This is the most simple setup that allows IDEA to start your application and establish a repl connection for sending forms.
 
-Sometimes this setup is not ideal: you might want to start an application using some other means and then connect to it using IDEA. In that case, you should **not** use "remote repl" run configuration, since it will rewrite your forms and results to something unreadable. Instead, you should still use the "local repl" run configuration that uses a remote repl client that connects to your process. Example:
+Sometimes this setup is not ideal: you might want to start an application using some other means — like `clj` CLI tool — and then connect to it using IDEA. In that case, you should **not** use "remote repl" run configuration, since it will rewrite your forms and results to something unreadable. Instead, you should still use the "local repl" run configuration that uses a remote repl client that connects to your process. Example:
 
 1. Make your target process a reveal server:
 
    ```sh
-   clj -A:reveal -J-Dclojure.server.repl='{:port 5555 :accept vlaaad.reveal/repl}'
+   clj -A:reveal -J-Dclojure.server.repl='{:port 5555 :accept vlaaad.reveal/repl :args [:always-on-top true]}'
    ```
 2. Add a dependency on [remote-repl](https://github.com/vlaaad/remote-repl) to your `deps.edn`:
 
    ```clj
    {:aliases
-    {:remote-repl {:extra-deps {vlaaad/remote-repl {:mvn/version "1.1"}}}}}
+    {:remote-repl {:extra-deps {vlaaad/remote-repl {:mvn/version "1.2.12"}}}}}
    ```
-3. Create a "local repl" run configuration with "clojure.main" repl type, make it "Run with Deps" with `remote-repl` alias, and in Parameters specify `-m vlaaad.remote-repl :port 5555`.
+3. Create a "local repl" run configuration with "clojure.main" repl type, make it "Run with Deps" with `remote-repl` alias, and in Parameters specify `-m vlaaad.remote-repl :port 5555 :reconnect true`. The `:reconnect` option is especially useful — it will keep trying to connect to the REPL, which allows you to restart the REPL server and make IDE automatically restore the connection.
 
 ## Nrepl-based editors
 
-For development workflows that require nrepl (e.g. calva, emacs with cider) Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. The minimum required version of nrepl is `0.6.0`.
+For development workflows that require nREPL (e.g. Calva, Emacs with Cider) Reveal has a middleware that will show evaluation results produced by nrepl: `vlaaad.reveal.nrepl/middleware`, you will need to add it to your middleware list. The minimum required version of nrepl is `0.6.0`.
 
 Example of using this middleware with command line nrepl entry point:
 ```sh
-$ clj -A:reveal:nrepl -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
+$ clj -A:reveal:nrepl -M -m nrepl.cmdline --middleware '[vlaaad.reveal.nrepl/middleware]'
 ```
 Alternatively, you can create [.nrepl.edn](https://nrepl.org/nrepl/usage/server.html#server-options) file in your project directory that will be picked up by nrepl. Example `.nrepl.edn` file:
 
@@ -330,7 +374,7 @@ If you want to use reveal from WSL, you will need X server (e.g. [X410](https://
 
 # Extending reveal
 
-There are 3 ways to extend Reveal to your needs: custom formatters, actions, and views. All three are available in `vlaaad.reveal.ext` namespace (aliased as `rx` in following examples).
+There are 3 ways to extend Reveal to your needs: custom formatters, actions, and views. All three are available in `vlaaad.reveal` namespace (aliased as `r` in following examples).
 
 One feature that they all share is annotations — non-intrusive metadata that exists alongside your objects in the Reveal state. Unlike datafy/nav based tooling, it does not obstruct your objects, leaving Clojure's metadata exactly as it is in your program, and, since the annotation is *alongside* the object, Reveal allows any object to be annotated — not just `IMeta`s.
 
@@ -373,8 +417,8 @@ These sfs allow modifying some aspect of a streaming:
    ```clj
    (defn identity-hash-code-sf [x]
      (let [hash (System/identityHashCode x)]
-       (rx/as hash
-         (rx/raw-string (format "0x%x" hash) {:fill :scalar}))))
+       (r/as hash
+         (r/raw-string (format "0x%x" hash) {:fill :scalar}))))
    ```
 - `(override-style sf f args*)` transforms the text style of another sf, useful in cases where you might want to mark entire objects and their constituents differently (e.g. styling semantically "ignored" objects as grey).
 
@@ -387,9 +431,9 @@ Action body should return a 0-arg function to indicate that this action is avail
 Minimal action example that shows how strings look unescaped (e.g. display `"hello\nworld"` as `hello` and `world` on separate lines):
 
 ```clj
-(rx/defaction ::unescape [x]
+(r/defaction ::unescape [x]
   (when (string? x)
-    #(rx/as x (rx/raw-string x {:fill :string}))))
+    #(r/as x (r/raw-string x {:fill :string}))))
 ```
 
 As mentioned earlier, there is [a bigger example](https://github.com/vlaaad/reveal/blob/master/examples/e01_loom_formatters_and_actions.clj) that shows how actions and formatting can build on each other to aid with data exploration:
@@ -403,8 +447,6 @@ You can execute registered actions programmatically by calling `(execute-action 
 A major difference between Output panel and Results panel is that the latter can show any graphical node allowed by Reveal's UI framework ([JavaFX](https://openjfx.io/)). Reveal is built on [cljfx](https://github.com/cljfx/cljfx) — declarative, functional and extensible wrapper of JavaFX inspired by react. Reveal converts all action results to cljfx component descriptions, and if returned action result is cljfx description, it is rendered as UI component.
 
 ### Short cljfx intro
-
-To thoroughly learn cljfx/JavaFX, you should go through cljfx [readme](https://github.com/cljfx/cljfx) and [examples](https://github.com/cljfx/cljfx/tree/master/examples) to get familiar with semantics and explore [JavaFX javadoc](https://openjfx.io/javadoc/14/) to find available views. This might be a big task, so to get a feel for it here is this short introduction.
 
 To describe a node, cljfx uses maps with a special key — `:fx/type` — that defines a type of node, while other keys define properties of that node. Value on `:fx/type` key can be a keyword (kebab-cased JavaFX class name) or a function (that receives a map of props and returns another description).
 Some examples of most commonly used descriptions:
@@ -421,7 +463,7 @@ Some examples of most commonly used descriptions:
 
 ;; combining views together
 {:fx/type :v-box ;; vertically
- :children [{:fx/type rx/value-view ;; built-in component
+ :children [{:fx/type r/value-view ;; built-in component
              :value msft-stock}
             {:fx/type :h-box ;; horizontally
              :children [{:fx/type :button
@@ -433,24 +475,26 @@ Some examples of most commonly used descriptions:
 ```
 While cljfx supports using maps to define callbacks, you should only use functions — behavior of map event handling is an implementation detail that is subject to change.
 
+To thoroughly learn cljfx/JavaFX, you should go through cljfx [readme](https://github.com/cljfx/cljfx) and [examples](https://github.com/cljfx/cljfx/tree/master/examples) to get familiar with semantics and explore [JavaFX javadoc](https://openjfx.io/javadoc/14/) to find available views.
+
 ### Built-in components
 
-Reveal provides an access to various built-in components:
+Reveal provides access to various built-in components:
 - `value-view` is a default view used in Output panel for action results that are not cljfx descriptions. It shows values using streaming formatting, for example:
   ```clj
-  {:fx/type rx/value-view
+  {:fx/type r/value-view
    :value (all-ns)}
   ```
 - `watch:all` and `watch:latest` actions are powered by `ref-watch-all-view` and `ref-watch-latest-view`. Additionally, there is `(observable ref fn)` utility function that allows seeing a ref through a transform — it is intended to be used with these views, for example:
   ```clj
-  {:fx/type rx/ref-watch-latest-view
-   :ref (rx/observable my-int-atom (juxt dec identity inc))}
+  {:fx/type r/ref-watch-latest-view
+   :ref (r/observable my-int-atom (juxt dec identity inc))}
   ```
 - `observable-view` allows deriving the whole cljfx component from `IRef` state (or any other observable data source), and showing it updated live whenever the ref is mutated. There is [an example](https://github.com/vlaaad/reveal/blob/master/examples/e02_integrant_live_system_view.clj) showing how it can be used for creating live monitor and controls for [integrant](https://github.com/weavejester/integrant)-managed app state.
 - `derefable-view` asynchronously derefs a blocking derefable (e.g. future or promise);
 - `table-view` shows a table. Unlike `view:table` action, it does not guess the columns, instead you need to provide them yourself, for example:
    ```clj
-   {:fx/type rx/table-view
+   {:fx/type r/table-view
     :items [:foo :foo/bar :foo/bar/baz :+]
     :columns [{:fn namespace}
               {:fn name}
@@ -460,12 +504,12 @@ Reveal provides an access to various built-in components:
    A bigger example that combines observable and table views to always show last tapped value as a table can be found [here](https://github.com/vlaaad/reveal/blob/master/examples/e04_tap_to_table.clj).
 - chart views: `pie-chart-view`, `bar-chart-view`, `line-chart-view` and `scatter-chart-view`. They do not try to guess the shape of data in the same way that their corresponding actions do, e.g. line chart data sequence always has to be labeled even when there is only one data series:
   ```clj
-  {:fx/type rx/line-chart-view
+  {:fx/type r/line-chart-view
    :data #{(map #(* % %) (range 100))}}
   ```
 - action view executes action on a value and displays execution result:
   ```clj
-  {:fx/type rx/action-view
+  {:fx/type r/action-view
    :action :vlaaad.reveal.action/java-bean
    :value *ns*}
   ```
@@ -476,7 +520,7 @@ Reveal provides an access to various built-in components:
 Fancy visualizations don't have to be leaf nodes that you can only look at — wouldn't it be nice to select a data point on a plot and explore it as a value? Reveal supports this continued data exploration for built-in views like charts and tables out of the box. In addition to that it provides a way to install the action popup on any JavaFX node with a special component — `popup-view`:
 
 ```clj
-{:fx/type rx/popup-view
+{:fx/type r/popup-view
  :value (the-ns 'clojure.core)
  :desc {:fx/type :label
         :text "The Clojure language library"}}
@@ -487,16 +531,23 @@ This description shows label that you can request a context menu on, and its pop
 
 # Interacting with Reveal from code
 
-If value submitted to Reveal window is a map with `:vlaaad.reveal/command` key, instead of being shown in the output panel it will be interpreted as a command that will change the UI. There are 2 types of commands.
+If value submitted to Reveal window is a map with `:vlaaad.reveal/command` key, instead of being shown in the output panel it will be interpreted as a command that will change the UI. Only queue-based windows accept commands by default (e.g. REPLs and a window created using `(ui)` fn). 
+
+You can also use `(submit-command! ...)` fn to submit a command to all shown windows, or to submit a command to a subset of all windows filtered with predicate of window opts.
+
+There are 2 types of commands:
 
 ## Predefined commands
 
-There is a set of built-in commands defined in `vlaaad.reveal.ext` namespace that you can evaluate to control Reveal window:
+There is a set of built-in commands defined in `vlaaad.reveal` namespace that you can evaluate to control Reveal window:
 - `(submit value)` - submits a value to the output panel (even if the value is a command);
 - `(clear-output)` - clears the output panel;
 - `(open-view value)` - opens value in a result panel;
 - `(all ...commands)` - executes a sequence of commands at once;
-- `(dispose)` - disposes Reveal window.
+- `(dispose)` - disposes Reveal window;
+- `(minimize)` - minimizes the window;
+- `(restore)` - unminimizes the window;
+- `(toggle-minimized)` - switches between minimized/unminimized state of the window.
 
 ## Evaluated command forms
 
@@ -506,7 +557,7 @@ You can evaluate code in a JVM that runs Reveal by submitting a map that has a c
 ```
 The benefit of using this form is that you don't need to have Reveal on the classpath to construct this map, which makes it suitable for use cases where reveal might not be on the classpath, for example it can be in a committed code that taps some values during system startup that is used in development, but ignored in production. It also can be used to control Reveal when it's using remote prepls, e.g. talking to ClojureScript environment where it's impossible to have Reveal on the classpath.
 
-By default the form will be evaluated in `vlaaad.reveal.ext` ns, but that is configurable with `:ns` key.
+By default the form will be evaluated in `vlaaad.reveal` ns, but that is configurable with `:ns` key.
 
 You can also supply `:env` — a map of symbols to arbitrary values that will be resolvable when evaluated. This map is useful when you want to pass a value to code form without embedding it in the form, for example:
 ```clj
