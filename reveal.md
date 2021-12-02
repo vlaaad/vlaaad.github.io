@@ -74,6 +74,8 @@ This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. You 
 
 You can open a temporary popup window for any value in the REPL either by calling `(vlaaad.reveal/inspect x)` fn, or by using `#reveal/inspect x` reader tag.
 
+<video controls><source src="/assets/2021-12-02/inspect.mp4" type="video/mp4"></source></video>
+
 ## Inspect object fields and properties
 
 Any object in the JVM has class and fields, making them easily accessible for inspection is extremely important. With `java-bean` contextual action you get a debugger-like view of objects in the VM. Access to this information greatly improves the visibility of the VM and allows to explore it. For example, for any class you have on the classpath you can get the place where it's coming from:
@@ -181,7 +183,8 @@ You can navigate around values as you do it in text editors by using arrow keys.
 
 - Use <kbd>Space</kbd>, <kbd>Enter</kbd> or right mouse button to open a context menu on selection;
 - Use <kbd>Tab</kbd> to switch focus between output and results panel;
-- Use <kbd>F11</kbd> or <kbd>Ctrl M</kbd> to maximize/unmaximize the window;
+- Use <kbd>F11</kbd> (<kbd>Cmd Shift M</kbd> on mac) to maximize/unmaximize the window;
+- Use <kbd>Alt F11</kbd> (<kbd>Cmd M</kbd> on mac) to minimize/unminimize the window;
 - In results panel:
   - Use <kbd>Ctrl ←</kbd> and <kbd>Ctrl →</kbd> to switch tabs in results panel;
   - Use <kbd>Ctrl ↑</kbd> to open result panel's tab tree that provides a hierarchical overview of all tabs in this panel, where <kbd>Backspace</kbd> can be used to close views;
@@ -303,6 +306,17 @@ A better way to display tapped values in Reveal is using a specialized tap log w
 You can open a new temporary sticker window for value inspection using either `vlaaad.reveal/inspect` fn or `#reveal/inspect` reader tag:
 ```clj
 #reveal/inspect (all-ns) ;; inspect all loaded namespaces
+```
+
+### `sticker`
+
+This is a generic sticker window that is similar to `inspect`. It exists for a different purpose though — creating longer-lived always-on-top windows for frequently used views (e.g. Component/Integrant/Mount state trackers). It's harder to close — you need to use close window shortcut like <kbd>Ctrl W</kbd> instead of <kbd>Escape</kbd>. Bounds group defaults to the value of provided title, so it's easier to create a specialized place for the particular sticker just by providing a distinct title.
+
+```clj
+(r/sticker 
+  {:fx/type r/ref-watch-latest-view
+   :ref @#'mount.core/running}
+  :title "mount system")
 ```
 
 # Editor integration
