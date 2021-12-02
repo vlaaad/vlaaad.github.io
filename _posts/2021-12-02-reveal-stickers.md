@@ -117,4 +117,4 @@ Sometimes you need a full screen space of your IDE. Looking at you merge conflic
 
 # The end
 
-Give it a try and tell me what you think!
+Now you know how to use Reveal stickers to setup an overlay with live view of your system that is easy to manage. Give it a try and tell me what you think!
