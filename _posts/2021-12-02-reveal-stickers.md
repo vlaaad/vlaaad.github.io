@@ -117,4 +117,4 @@ Sometimes you need a full screen space of your IDE. Looking at you merge conflic
 
 # The end
 
-Now you know how to use Reveal stickers to setup an overlay with live view of your system that is easy to manage. Give it a try and tell me what you think!
+Now you know how to use Reveal stickers to setup an overlay with live vortex into the JVM. You can configure it to represent the app you develop exactly as you want to see it. Give it a try and tell me what you think!
