@@ -28,21 +28,21 @@ Reveal aims to be an extensible tool suitable for helping with development of an
 The easiest way to try it is to run a Reveal repl:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.250"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.251"}}}' \
 -X vlaaad.reveal/repl
 ```
 Executing this command will start a repl and open Reveal output window that will mirror the evaluations in the shell.
 
 Here is an example alias you can put into your user `deps.edn`:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.250"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.251"}}
          :ns-default vlaaad.reveal
          :exec-fn repl}
 ```
 
 If you are using older version of `clj` (before [1.10.1.672](https://insideclojure.org/2020/09/04/clj-exec/)), you can use this main-style alias:
 ```clj
-:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.250"}}
+:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.251"}}
          :main-opts ["-m" "vlaaad.reveal" "repl"]}
 ```
 
@@ -376,7 +376,7 @@ If you are using leiningen, you can specify Reveal middleware in `project.clj`:
 ```clj
 (defproject com.example/reveal-in-lein "1.0.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.10.2"]]
-  :profiles {:reveal {:dependencies [[vlaaad/reveal "1.3.250"]]
+  :profiles {:reveal {:dependencies [[vlaaad/reveal "1.3.251"]]
                       :repl-options {:nrepl-middleware [vlaaad.reveal.nrepl/middleware]}}})
 ```
 
