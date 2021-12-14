@@ -70,11 +70,17 @@ This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. You 
 
 <video controls><source src="/assets/reveal-pro/db-full-demo.mp4" type="video/mp4"></source></video>
 
-## Inspector sticker window
+## Inspector popup window
 
 You can open a temporary popup window for any value in the REPL either by calling `(vlaaad.reveal/inspect x)` fn, or by using `#reveal/inspect x` reader tag.
 
 <video controls><source src="/assets/2021-12-02/inspect.mp4" type="video/mp4"></source></video>
+
+## System watcher stickers
+
+This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. If you are using component, integrant or mount, you will find it useful to have a small [sticker](https://vlaaad.github.io/reveal-stickers) window that shows current state of your dev system with controls to start and stop it. You don't need to remember if it's running or not when you can always see it:
+
+<video controls><source src="/assets/reveal-pro/system-stickers.mp4" type="video/mp4"></source></video>
 
 ## Inspect object fields and properties
 

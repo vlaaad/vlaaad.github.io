@@ -103,6 +103,30 @@ Forms are available either with:
   ```
   After evaluating this map, you can select `view` action on it in Reveal Pro window to see the form. Tip: see [Interacting with Reveal from code](/reveal/#interacting-with-reveal-from-code) to be able to immediately open the form without having to interact with Reveal window.
 
+## System watcher stickers
+
+If you are using component, integrant or mount, you will find it useful to have a small [sticker](https://vlaaad.github.io/reveal-stickers) window that shows current state of your dev system with controls to start and stop it. You don't need to remember if it's running or not when you can always see it!
+
+<video controls><source src="/assets/reveal-pro/system-stickers.mp4" type="video/mp4"></source></video>
+
+System watcher stickers are available in `vlaaad.reveal` ns:
+
+```clj
+(require '[vlaaad.reveal :as r])
+
+;; mount can be used straight away
+(r/mount-sticker)
+
+;; integrant requires system ref and config
+(r/integrant-sticker :ref #'my-system :config my-integrant-config)
+;; integrant repl library support: uses integrant.repl's system state and config
+(r/integrant-repl-sticker)
+
+;; component has no way to tell if system is running, so you need to tell it
+(r/component-sticker :ref #'my-system :running #(-> % :db :connection))
+
+```
+
 ## File system navigation
 
 Reveal Pro adds support for Java's file system APIs that allow navigating folders and zip/jar archives. Explore your classpath:
@@ -111,9 +135,7 @@ Reveal Pro adds support for Java's file system APIs that allow navigating folder
 
 ## ...And more are on the way
 
-More tools are being developed for Reveal Pro that aim to solve common development problems. Particularly, database exploration is one area that I intend to improve in the future.
-
-You can stay up to date and talk to me or other Reveal users in [#reveal](https://clojurians.slack.com/messages/reveal/) channel of Clojurians slack.
+More tools are being developed for Reveal Pro that aim to solve common development problems. You can stay up to date and talk to me or other Reveal users in [#reveal](https://clojurians.slack.com/messages/reveal/) channel of Clojurians slack.
 
 # Subscription management and cancellation
 
