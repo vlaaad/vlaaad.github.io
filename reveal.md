@@ -82,6 +82,12 @@ This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. If y
 
 <video controls><source src="/assets/reveal-pro/system-stickers.mp4" type="video/mp4"></source></video>
 
+## Vega(-Lite) visualizations
+
+[Vega(-Lite)](https://vega.github.io/) is a declarative data visualization language that uses json for visualization description. Reveal bundles a view that converts Clojure data structures to json and shows them as vega visualizations, providing a convenient way to explore the data:
+
+<video controls><source src="/assets/reveal/vega-view.mp4" type="video/mp4"></source></video>
+
 ## Inspect object fields and properties
 
 Any object in the JVM has class and fields, making them easily accessible for inspection is extremely important. With `java-bean` contextual action you get a debugger-like view of objects in the VM. Access to this information greatly improves the visibility of the VM and allows to explore it. For example, for any class you have on the classpath you can get the place where it's coming from:
@@ -91,7 +97,7 @@ I learned about it after implementing this feature :)
 
 ## Forms
 
-This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. Forms allow you to convert data structure specifications (e.g. Clojure specs) to UI input components for creating these data structures. This is a generic and multi-purpose tool that can be used for:
+This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. Forms allow you to convert data structure specifications (e.g. Clojure specs or json schemas) to UI input components for creating these data structures. This is a generic and multi-purpose tool that can be used for:
 
 - learning possible shapes of expected data;
 - exploring data-driven APIs;
@@ -100,6 +106,10 @@ This feature is only available in [Reveal Pro](/reveal-pro){: .buy-button}. Form
 Here is how it looks like:
 
 ![ns form demo](/assets/reveal-pro/ns-form.gif)
+
+Since Vega(-Lite) provides json schemas that are supported by Forms, it is very useful to explore and build visualizations using Vega Form view:
+
+<video controls><source src="/assets/reveal-pro/vega-form-view.mp4" type="video/mp4"></source></video>
 
 ## Look and feel customization
 

@@ -69,7 +69,7 @@ Here is what you can do with DB explorer:
 
 ## Forms
 
-Forms allow you to convert data structure specifications to UI input components for creating these data structures. This is a generic and multi-purpose tool that supports Clojure spec out of the box and can be extended to other data specification libraries.
+Forms allow you to convert data structure specifications to UI input components for creating these data structures. This is a generic and multi-purpose tool that supports Clojure spec and json schema out of the box and can be extended to other data specification libraries.
 
 What leverage can it give you?
 
@@ -102,6 +102,25 @@ Forms are available either with:
    :form (form/spec-alpha-form `ns)}
   ```
   After evaluating this map, you can select `view` action on it in Reveal Pro window to see the form. Tip: see [Interacting with Reveal from code](/reveal/#interacting-with-reveal-from-code) to be able to immediately open the form without having to interact with Reveal window.
+
+## Vega forms
+
+Since [Vega(-Lite)](https://vega.github.io/) provides json schemas that are supported by Forms, it is very useful to explore [vega visualizations](/reveal/#vega-lite-visualizations) using Form views:
+
+<video controls><source src="/assets/reveal-pro/vega-form-view.mp4" type="video/mp4"></source></video>
+
+Vega forms are available with:
+- `view:vega-form` action on vega datasets — collections of maps or collections of numbers (as well as on refs that point to vega datasets);
+- `vlaaad.reveal/vega-form-view` view that shows both vega editor form and vega visualization, e.g.:
+  ```clj
+  (require '[vlaaad.reveal :as r])
+  #reveal/inspect {:fx/type r/vega-form-view
+                   :spec {:data {:name "source"}
+                          :mark {:type "line"}
+                          :encoding {:x {:field "data" :type "quantitative"}
+                                     :y {:field "data" :type "quantitative"}}}
+                   :data {"source" (range 1000)}}
+  ```
 
 ## System watcher stickers
 
