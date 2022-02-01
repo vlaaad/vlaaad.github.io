@@ -15,13 +15,17 @@ layout: default
   {{ content }}
 
 </div>
-
-<div id="hyvor-talk-view"></div>
-<script type="text/javascript">
-    var HYVOR_TALK_WEBSITE = 1581;
-    var HYVOR_TALK_CONFIG = {
-        url: '{{ page.url | absolute_url }}',
-        id: '{{page.id}}'
-    };
+<script src="https://giscus.app/client.js"
+        data-repo="vlaaad/vlaaad.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNzg0NDQwOTk="
+        data-category="Posts"
+        data-category-id="DIC_kwDOCqLXQ84CA8ib"
+        data-mapping="url"
+        data-reactions-enabled="0"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
 </script>
-<script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script>
