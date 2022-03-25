@@ -17,7 +17,7 @@ Reveal Pro is an improved version of [Reveal](/reveal/) that aims to be batterie
 
 It is a fork of Reveal that should be used instead of Reveal, not alongside it.
 
-Reveal Pro costs $9.99 per month — [start a free trial](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}!
+Reveal Pro costs $9.99 per month — [start a free trial](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button}! For residents or citizens of Ukraine Reveal Pro is free forever — use "PUTINKHUILO" promocode during checkout.
 
 # Getting started
 
