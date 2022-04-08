@@ -1,7 +1,7 @@
 ---
-layout: reveal
-title: "Reveal Pro:<br>Read Eval Visualize Loop for&nbsp;Clojure, Supercharged"
+layout: redirected
 permalink: /reveal-pro
+redirect_to: /reveal
 ---
 
 ![Demo](/assets/reveal-pro/main.gif)
@@ -143,7 +143,6 @@ System watcher stickers are available in `vlaaad.reveal` ns:
 
 ;; component has no way to tell if system is running, so you need to tell it
 (r/component-sticker :ref #'my-system :running #(-> % :db :connection))
-
 ```
 
 ## File system navigation
