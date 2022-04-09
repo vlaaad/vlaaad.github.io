@@ -4,10 +4,11 @@ code {
 }
 
 code {
-  background-color: $grey-2;
+  background-color: #ffffff;
   border-radius: 3px;
+  border: 1px solid $grey-2;
   color: #3B3228;
-  padding: .25em .25em;
+  padding: 0em .25em;
 }
 
 pre {
@@ -16,6 +17,7 @@ pre {
 
 pre code {
   background-color: transparent;
+  border-color: transparent;
   color: inherit;
   font-size: 100%;
   padding: 0;

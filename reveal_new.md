@@ -32,9 +32,7 @@ To try Reveal Free:
 2. Evaluate some forms and inspect the results.
 
 To try Reveal Pro:
-
 1. Start a Reveal Pro REPL:
-
    ```sh
    clj \
    -Sdeps '{:deps {dev.vlaaad/reveal-pro {:mvn/version "1.3.342"}}}' \
@@ -46,32 +44,31 @@ To try Reveal Pro:
 
 # Features
 
-TODO: comparison table
 <div class="pricing">
     <h2 class="pricing-col1 pricing-row1">Free</h2>
-    <a href="/reveal/feature/eval-on-selection" class="pricing-feature pricing-col1 pricing-row2"><img src="/assets/reveal/light-theme.png">Eval on selection</a>
-    <a href="/reveal/feature/inspector-popup" class="pricing-feature pricing-col2 pricing-row2"><img src="/assets/reveal/light-theme.png">Inspector popup</a>
-    <a href="/reveal/feature/vega" class="pricing-feature pricing-col1 pricing-row3"><img src="/assets/reveal/light-theme.png">Vega(-Lite) visualizations</a>
-    <a href="/reveal/feature/java-bean" class="pricing-feature pricing-col2 pricing-row3"><img src="/assets/reveal/light-theme.png">Object inspector</a>
-    <a href="/reveal/feature/test-runner" class="pricing-feature pricing-col1 pricing-row4"><img src="/assets/reveal/light-theme.png">Test runner</a>
-    <a href="/reveal/feature/repls" class="pricing-feature pricing-col2 pricing-row4"><img src="/assets/reveal/light-theme.png">REPL, pREPL, nREPL</a>
-    <a href="/reveal/feature/customization" class="pricing-feature pricing-col1 pricing-row5"><img src="/assets/reveal/light-theme.png">Look and feel customization</a>
-    <a href="/reveal/feature/tap" class="pricing-feature pricing-col2 pricing-row5"><img src="/assets/reveal/light-theme.png">Tap support</a>
-    <a href="/reveal/feature/browsers" class="pricing-feature pricing-col1 pricing-row6"><img src="/assets/reveal/light-theme.png">URL and file browsers</a>
-    <a href="/reveal/feature/docs-and-sources" class="pricing-feature pricing-col2 pricing-row6"><img src="/assets/reveal/light-theme.png">Docs and sources</a>
-    <a href="/reveal/feature/ref-watchers" class="pricing-feature pricing-col1 pricing-row7"><img src="/assets/reveal/light-theme.png">Ref watchers</a>
-    <a href="/reveal/feature/charts" class="pricing-feature pricing-col2 pricing-row7"><img src="/assets/reveal/light-theme.png">Charts</a>
-    <a href="/reveal/feature/table" class="pricing-feature pricing-col1 pricing-row8"><img src="/assets/reveal/light-theme.png">Table view</a>
+    <a href="/reveal/feature/eval-on-selection" class="pricing-feature pricing-col1 pricing-row2"><img src="/assets/reveal/eval.png">Eval on selection</a>
+    <a href="/reveal/feature/inspector-popup" class="pricing-feature pricing-col2 pricing-row2"><img src="/assets/reveal/popup.png">Inspector popup</a>
+    <a href="/reveal/feature/vega" class="pricing-feature pricing-col1 pricing-row3"><img src="/assets/reveal/vega.png">Vega(-Lite) visualizations</a>
+    <a href="/reveal/feature/java-bean" class="pricing-feature pricing-col2 pricing-row3"><img src="/assets/reveal/java-bean.png">Object inspector</a>
+    <a href="/reveal/feature/test-runner" class="pricing-feature pricing-col1 pricing-row4"><img src="/assets/reveal/test.png">Test runner</a>
+    <a href="/reveal/feature/repls" class="pricing-feature pricing-col2 pricing-row4"><img src="/assets/reveal/remote-prepl.png">REPL, pREPL, nREPL</a>
+    <a href="/reveal/feature/customization" class="pricing-feature pricing-col1 pricing-row5"><img src="/assets/reveal/light-theme-2.png">Look and feel customization</a>
+    <a href="/reveal/feature/tap" class="pricing-feature pricing-col2 pricing-row5"><img src="/assets/reveal/tap.png">Tap support</a>
+    <a href="/reveal/feature/browsers" class="pricing-feature pricing-col1 pricing-row6"><img src="/assets/reveal/browser.png">URL and file browsers</a>
+    <a href="/reveal/feature/docs-and-sources" class="pricing-feature pricing-col2 pricing-row6"><img src="/assets/reveal/docs.png">Docs and sources</a>
+    <a href="/reveal/feature/ref-watchers" class="pricing-feature pricing-col1 pricing-row7"><img src="/assets/reveal/watch.png">Ref watchers</a>
+    <a href="/reveal/feature/charts" class="pricing-feature pricing-col2 pricing-row7"><img src="/assets/reveal/charts.png">Charts</a>
+    <a href="/reveal/feature/table" class="pricing-feature pricing-col1 pricing-row8"><img src="/assets/reveal/tables.png">Table view</a>
     <div class="pricing-col3 pricing-row1">
         <h2>Pro</h2>
         <p>Everything in Free, plus:</p>
     </div>
-    <a href="/reveal/feature/sql" class="pricing-feature pricing-col3 pricing-row2"><img src="/assets/reveal/light-theme.png">SQL DB explorer</a>
-    <a href="/reveal/feature/system-watchers" class="pricing-feature pricing-col3 pricing-row3"><img src="/assets/reveal/light-theme.png">System watchers</a>
-    <a href="/reveal/feature/spec-forms" class="pricing-feature pricing-col3 pricing-row4"><img src="/assets/reveal/light-theme.png">Spec forms</a>
-    <a href="/reveal/feature/json-schema-forms" class="pricing-feature pricing-col3 pricing-row5"><img src="/assets/reveal/light-theme.png">JSON schema and Vega(-Lite) forms</a>
-    <a href="/reveal/feature/fs" class="pricing-feature pricing-col3 pricing-row6"><img src="/assets/reveal/light-theme.png">File system navigation</a>
-    <a href="/reveal/feature/resource-watchers" class="pricing-feature pricing-col3 pricing-row7"><img src="/assets/reveal/light-theme.png">Resource watchers</a>
+    <a href="/reveal/feature/sql" class="pricing-feature pricing-col3 pricing-row2"><img src="/assets/reveal/db.png">SQL DB explorer</a>
+    <a href="/reveal/feature/system-watchers" class="pricing-feature pricing-col3 pricing-row3"><img src="/assets/reveal/sys.png">System watchers</a>
+    <a href="/reveal/feature/spec-forms" class="pricing-feature pricing-col3 pricing-row4"><img src="/assets/reveal/spec-forms.png">Spec forms</a>
+    <a href="/reveal/feature/json-schema-forms" class="pricing-feature pricing-col3 pricing-row5"><img src="/assets/reveal/vega-form.png">JSON schema and Vega(-Lite) forms</a>
+    <a href="/reveal/feature/fs" class="pricing-feature pricing-col3 pricing-row6"><img src="/assets/reveal/fs.png">File system navigation</a>
+    <a href="/reveal/feature/resource-watchers" class="pricing-feature pricing-col3 pricing-row7"><img src="/assets/reveal/resources.png">Resource watchers</a>
 </div>
 
 # Learn Reveal
@@ -104,7 +101,7 @@ Other videos about Reveal:
 I also talked about Reveal on [defn](https://soundcloud.com/defn-771544745/65-vlad-protsenko) podcast (1h30m).
 
 Various written setup instructions using Reveal:
-- [Practicalli](https://practicalli.github.io/clojure/clojure-tools/data-browsers/reveal.html) page describes Reveal setup for CLI, nrepl editors, emacs (using cider) and rebel-readline;
+- [Practicalli](https://practical.li/clojure/clojure-cli/data-browsers/reveal.html) page describes Reveal setup for CLI, nrepl editors, emacs (using cider) and rebel-readline;
 - [Calva](https://calva.io/reveal/) page describes vscode setup with Calva extension (using both tools-deps and leiningen examples);
 - my [blog post](/reveal-repls-and-networking) describes various Reveal socket REPL setups that talk with remote processes.
 
