@@ -9,13 +9,13 @@ Here you can find some tips to effectively using Reveal:
 
 Printing objects while developing converts them to strings — this makes inspecting them further impossible. All Reveal REPLs (and `r/tap-log` window) show `tap>`-ed values as themselves, allowing deeper introspection:
 
-TODO: tap> demo
+<video controls><source src="/assets/reveal/tap-vs-println.mp4" type="video/mp4"></source></video>
 
 # Use observable views on Vars for iterative development
 
 Reveal provides observable view — `r/observable-view` — that can be used to derive continuously updated view from some mutable ref like atoms. Vars are also mutable refs. You can watch changes to Vars as you redefine them during development and show a view of their contents or some computation results involving the var. This is especially useful when you work on something visual:
 
-TODO: vega demo
+<video controls><source src="/assets/reveal/vega-view.mp4" type="video/mp4"></source></video>
 
 # Add REPL command in your IDE to control sticker windows
 

@@ -65,10 +65,10 @@ To try Reveal Pro:
     </div>
     <a href="/reveal/feature/sql" class="pricing-feature pricing-col3 pricing-row2"><img src="/assets/reveal/db.png">SQL DB explorer</a>
     <a href="/reveal/feature/system-watchers" class="pricing-feature pricing-col3 pricing-row3"><img src="/assets/reveal/sys.png">System watchers</a>
-    <a href="/reveal/feature/spec-forms" class="pricing-feature pricing-col3 pricing-row4"><img src="/assets/reveal/spec-forms.png">Spec forms</a>
+    <a href="/reveal/feature/spec-forms" class="pricing-feature pricing-col3 pricing-row4"><img src="/assets/reveal/spec-forms.png">Forms</a>
     <a href="/reveal/feature/json-schema-forms" class="pricing-feature pricing-col3 pricing-row5"><img src="/assets/reveal/vega-form.png">JSON schema and Vega(-Lite) forms</a>
     <a href="/reveal/feature/fs" class="pricing-feature pricing-col3 pricing-row6"><img src="/assets/reveal/fs.png">File system navigation</a>
-    <a href="/reveal/feature/resource-watchers" class="pricing-feature pricing-col3 pricing-row7"><img src="/assets/reveal/resources.png">Resource watchers</a>
+    <a href="/reveal/feature/resource-watchers" class="pricing-feature pricing-col3 pricing-row7"><img src="/assets/reveal/resources.png">Resources sticker</a>
 </div>
 
 # Learn Reveal
