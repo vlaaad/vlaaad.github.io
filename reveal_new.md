@@ -3,7 +3,7 @@ layout: reveal
 title: "Reveal:<br>Read Eval Visualize Loop for&nbsp;Clojure"
 permalink: /reveal
 ---
-TODO: demo video
+![Demo](/assets/reveal/new-demo.gif)
 
 | [![Clojars Free](https://img.shields.io/clojars/v/vlaaad/reveal.svg?logo=clojure&logoColor=white&style=for-the-badge&label=free)](https://clojars.org/vlaaad/reveal) | [![Clojars Pro](https://img.shields.io/clojars/v/dev.vlaaad/reveal-pro.svg?logo=clojure&logoColor=white&style=for-the-badge&label=pro)](https://clojars.org/dev.vlaaad/reveal-pro) | [![Github page](https://img.shields.io/badge/github-vlaaad%2Freveal-informational?logo=github&style=for-the-badge&label=)](https://github.com/vlaaad/reveal) | [![Slack Channel](https://img.shields.io/badge/slack-%20%23reveal-blue.svg?logo=slack&style=for-the-badge&label=)](https://clojurians.slack.com/messages/reveal/) |
 
