@@ -1,6 +1,7 @@
 ---
 layout: reveal
 title: "Reveal:<br>Read Eval Visualize Loop for&nbsp;Clojure"
+head_title: "Reveal: Read Eval Visualize Loop for Clojure"
 permalink: /reveal/
 ---
 ![Demo](/assets/reveal/new-demo.gif)
