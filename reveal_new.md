@@ -26,7 +26,7 @@ To try Reveal Free:
 1. Start a Reveal Free REPL:
     ```sh
     clj \
-    -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.272"}}}' \
+    -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.273"}}}' \
     -X vlaaad.reveal/repl
     ```
 2. Evaluate some forms and inspect the results.
@@ -35,7 +35,7 @@ To try Reveal Pro:
 1. Start a Reveal Pro REPL:
    ```sh
    clj \
-   -Sdeps '{:deps {dev.vlaaad/reveal-pro {:mvn/version "1.3.342"}}}' \
+   -Sdeps '{:deps {dev.vlaaad/reveal-pro {:mvn/version "1.3.344"}}}' \
    -X vlaaad.reveal/repl
    ```
 2. [Start a free trial here](https://buy.stripe.com/8wM9Dz5bKand5ck3cc){: .buy-button};
