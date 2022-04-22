@@ -21,8 +21,8 @@ The only difference between Reveal Free and Reveal Pro in terms of setting it up
 
 | Edition | Lib                     | Version   |
 |---------|-------------------------|-----------|
-| Free    | `vlaaad/reveal`         | `1.3.272` |
-| Pro     | `dev.vlaaad/reveal-pro` | `1.3.342` |
+| Free    | `vlaaad/reveal`         | `1.3.273` |
+| Pro     | `dev.vlaaad/reveal-pro` | `1.3.344` |
 
 # Build tool
 
