@@ -103,8 +103,6 @@ clj \
 When using Cursive with Clj, it's usually enough to launch a Reveal REPL using a following "Clojure REPL - Local" run configuration:
 - Type of REPL to run: clojure.main;
 - How to run it: Run with Deps;
-- Type of REPL to run: clojure.main;
-   - How to run it: Run with Deps;
 - Parameters: `-m vlaaad.reveal repl` (or as a sticker window: `-m vlaaad.reveal repl :always-on-top true`).
 
 ## Cursive + Clj + remote REPL
