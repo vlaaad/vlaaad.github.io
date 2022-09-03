@@ -37,6 +37,7 @@ These shortcuts work in an action context menu (opened by pressing <kbd>Space</k
 |-----------------------------------------|--------------------------------------------------------------------------|
 | <kbd>↑</kbd> <kbd>↓</kbd>               | Switch focus between available actions and eval form input text field    |
 | <kbd>Enter</kbd>                        | Execute selected action or evaluate the form written in the text field   |
+| <kbd>Alt ↑</kbd> <kbd>Alt ↓</kbd>       | In the text field: traverse history of previously evaluated code forms   |
 | <kbd>Ctrl Enter</kbd>/<kbd>⌘Enter</kbd> | Execute action or form and open the result in a new results panel        |
 | <kbd>Shift Enter</kbd>                  | Execute action or form and open the result in a temporary sticker window |
 
