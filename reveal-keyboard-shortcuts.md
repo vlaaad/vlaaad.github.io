@@ -26,28 +26,28 @@ These shortcuts work in the output panel — syntax-highlighted text-like UI:
 |---------------------------------------------------------------------|------------------------------------------|
 | <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd>                 | Textual navigation of data structures    |
 | <kbd>Alt ←</kbd> <kbd>Alt ↑</kbd> <kbd>Alt →</kbd> <kbd>Alt ↓</kbd> | Structural navigation of data structures |
-| <kbd>/</kbd> <kbd>Ctrl F</kbd>                                      | Search the output panel                  |
+| <kbd>/</kbd> / <kbd>Ctrl F</kbd> / <kbd>⌘F</kbd>                    | Search the output panel                  |
 | <kbd>Ctrl L</kbd>                                                   | Clear the output panel                   |
 
 # Context menu
 
 These shortcuts work in an action context menu (opened by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>) on selected object:
 
-| Key Combination                         | Action                                                                   |
-|-----------------------------------------|--------------------------------------------------------------------------|
-| <kbd>↑</kbd> <kbd>↓</kbd>               | Switch focus between available actions and eval form input text field    |
-| <kbd>Enter</kbd>                        | Execute selected action or evaluate the form written in the text field   |
-| <kbd>Alt ↑</kbd> <kbd>Alt ↓</kbd>       | In the text field: traverse history of previously evaluated code forms   |
-| <kbd>Ctrl Enter</kbd>/<kbd>⌘Enter</kbd> | Execute action or form and open the result in a new results panel        |
-| <kbd>Shift Enter</kbd>                  | Execute action or form and open the result in a temporary sticker window |
+| Key Combination                           | Action                                                                   |
+|-------------------------------------------|--------------------------------------------------------------------------|
+| <kbd>↑</kbd> <kbd>↓</kbd>                 | Switch focus between available actions and eval form input text field    |
+| <kbd>Enter</kbd>                          | Execute selected action or evaluate the form written in the text field   |
+| <kbd>Alt ↑</kbd> <kbd>Alt ↓</kbd>         | In the text field: traverse history of previously evaluated code forms   |
+| <kbd>Ctrl Enter</kbd> / <kbd>⌘Enter</kbd> | Execute action or form and open the result in a new results panel        |
+| <kbd>Shift Enter</kbd>                    | Execute action or form and open the result in a temporary sticker window |
 
 
 # Results panel
 
 These shortcuts work in a results panel that shows result of some previously selected action:
 
-| Key Combination                     | Action                                                                                      |
-|-------------------------------------|---------------------------------------------------------------------------------------------|
-| <kbd>Ctrl ←</kbd> <kbd>Ctrl →</kbd> | Switch between result tabs in the results panel                                             |
-| <kbd>Ctrl ↑</kbd>                   | Open results panel's tab tree that provides hierarchical overview of all tabs in this panel |
-| <kbd>Backspace</kbd>                | In the tab tree: close currently selected tab                                               |
+| Key Combination                                                   | Action                                                                                      |
+|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| <kbd>Ctrl ←</kbd> <kbd>Ctrl →</kbd> / <kbd>⌘←</kbd> <kbd>⌘→</kbd> | Switch between result tabs in the results panel                                             |
+| <kbd>Ctrl ↑</kbd> / <kbd>⌘↑</kbd>                                 | Open results panel's tab tree that provides hierarchical overview of all tabs in this panel |
+| <kbd>Backspace</kbd>                                              | In the tab tree: close currently selected tab                                               |
