@@ -4,7 +4,7 @@ title: "Reveal now highlights illegal booleans in Clojure"
 description: "If you are wondering what the hell is illegal booleans, read this post — it will save you some headaches in the future"
 ---
 
-I made [Reveal](/reveal/) — Read Eval Visualize Loop for Clojure — a set of visual tools aiming to improve the development experience by providing better access to the data in your JVM. One core ideas in Reveal is using value-aware syntax-highlighting to display the output to the user, so you can immediately see a difference between e.g. a symbol `clojure.lang.Ratio` and a class `clojure.lang.Ratio`. The newest version of Reveal (Free `1.3.279`, Pro `1.3.357`) introduces a new highlight.
+I made [Reveal](/reveal/) — Read Eval Visualize Loop for Clojure — a set of visual tools aiming to improve the development experience by providing better access to the data in your JVM. One of the core ideas in Reveal is using value-aware syntax-highlighting to display the output to the user, so you can immediately see a difference between e.g. a symbol `clojure.lang.Ratio` and a class `clojure.lang.Ratio`. The newest version of Reveal (Free `1.3.280`, Pro `1.3.359`) introduces a new highlight.
 
 ## What are illegal booleans
 
