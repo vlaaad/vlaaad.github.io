@@ -8,7 +8,7 @@ I made [Reveal](/reveal/) — Read Eval Visualize Loop for Clojure — a set of 
 
 ## What are illegal booleans
 
-An illegal boolean is an instance of Boolean that is neither `Boolean/TRUE` nor `Boolean/FALSE`, e.g. a manually created instance of a Boolean like `(Boolean. true)`. They are problematic in Clojure because of its implementation of truthiness — while the semantics define truthiness as "everythin is truthy except nil and false", it is implemented as "everything is truthy except nil and `Boolean/FALSE`". This means `(Boolean. false)` is truthy in Clojure. It's bad. It's a great time sink that can drive you wild if you don't know about it and you see a `false` acting as `true` in your code. 
+An illegal boolean is an instance of Boolean that is neither `Boolean/TRUE` nor `Boolean/FALSE`, e.g. a manually created instance of a Boolean like `(Boolean. true)`. They are problematic in Clojure because of its implementation of truthiness — while the semantics define truthiness as "everything is truthy except nil and false", it is implemented as "everything is truthy except nil and `Boolean/FALSE`". This means `(Boolean. false)` is truthy in Clojure. It's bad. It's a great time sink that can drive you wild if you don't know about it and you see a `false` acting as `true` in your code. 
 
 And what's worse, you can get those pesky little booleanses accidentally.
 
