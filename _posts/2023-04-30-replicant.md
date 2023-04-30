@@ -14,7 +14,7 @@ As you might know, I made [Reveal](/reveal/) — a tool similar to Morse/REBL th
 
 # Replicant
 
-Replicant comes in 2 parts: [client](https://github.com/clojure/data.alpha.replicant-client) and [server](https://github.com/clojure/data.alpha.replicant-server). The idea is that you run replicant server in the process you want to inspect, and use replicant client in a tool like Morse or Reveal to interact with the server. Together, they allow inspecting remote objects as if they are local. The client library is JVM-only, but in principle there is a protocol on top of eval and edn that can be implemented in another Clojure dialect.
+Replicant comes in 2 parts: [client](https://github.com/clojure/data.alpha.replicant-client) and [server](https://github.com/clojure/data.alpha.replicant-server). The idea is that you run replicant server in the process you want to inspect, and use replicant client in a tool like Morse or Reveal to interact with the server. Together, they allow inspecting remote objects as if they are local. The server library is JVM-only, but in principle there is a protocol on top of eval and edn that can be implemented in another Clojure dialect.
 
 Replicant server is a prepl that "remotifes" objects when responding. For example, if I request `*ns*`, it will respond with a following EDN: 
 ```clj
@@ -31,7 +31,7 @@ I tried Morse in a remote mode, and unfortunately it didn't work due to a minor 
 {:klass clojure.lang.Namespace 
  :ref user}
 ```
-Here, `clojure.lang.Namespace` is a symbol, but `user` is deserialized a "Relay" in replicant terms — a custom type that holds a reference to replicant client and a reference id. When Morse asks for `toString` of Relay, it performs a network request and fetches a string — `"user"` — for the id. 
+Here, `clojure.lang.Namespace` is a symbol, but `user` is deserialized as a "Relay" in replicant terms — a custom type that holds a reference to replicant client and a reference id. When Morse asks for `toString` of Relay, it performs a network request and fetches a string — `"user"` — for the id. 
 
 I also [reported an issue](https://github.com/clojure/data.alpha.replicant-server/issues/1) where evaluating a map literal like `{:a 1}` serialized it as a `r/fn` (remote fn) instead of `r/map` (remote map), so it wasn't possible to inspect maps at all — remote fns don't even fetch `toString`s... I'm not sure if I'm doing something wrong here, but I launched the server as described in the docs:
 ```sh
