@@ -10,7 +10,7 @@ Awhile ago, the Clojure team [announced](https://clojure.org/news/2023/04/28/int
 
 ![](/assets/2023-04-30/morse.png)
 
-As you might know, I made [Reveal](/reveal/) — a tool similar to Morse/REBL that aims to help with data inspection, so one thing that made me curious about the Morse announcement is the mention of new Replicant libraries designed to help with remote data inspection. 
+As you might know, I made [Reveal](/reveal/) — a tool similar to Morse/REBL that aims to help with data inspection. One thing that made me particularly curious about the Morse announcement is a mention of new Replicant libraries designed to help with remote data inspection. 
 
 # Replicant
 
