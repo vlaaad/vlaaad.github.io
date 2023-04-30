@@ -6,7 +6,7 @@ description: "I tried out the new Clojure tool, Morse (aka REBL), and its compan
 
 # Release of Morse
 
-Awhile ago, the Clojure team [announced](https://clojure.org/news/2023/04/28/introducing-morse) a new data inspection tool called Morse. Unfortunately, it was not clear what the tool is exactly, since the announcement post didn't include any screenshots, and saying that it's an evolution from REBL. Upon closer inspection it turned out that Morse is REBL, but rebranded and open sourced. I'm very grateful for all the hard and thoughtful work that Clojure team does to improve my favorite programming language ecosystem. I also hope they would spend a bit more time on communicating the work they do. Anyway, here is what Morse looks like:
+Awhile ago, the Clojure team [announced](https://clojure.org/news/2023/04/28/introducing-morse) a new data inspection tool called Morse. Unfortunately, it was not clear what the tool is exactly, since the announcement post didn't include any screenshots, only saying that it's an evolution from REBL. Upon closer inspection it turned out that Morse *is* REBL, but rebranded and open sourced. I'm very grateful for all the hard and thoughtful work that Clojure team does to improve the ecosystem of my favorite programming language! I also hope they would spend a bit more time on communicating the work they do... Anyway, here is what Morse looks like:
 
 ![](/assets/2023-04-30/morse.png)
 
@@ -16,7 +16,7 @@ As you might know, I made [Reveal](/reveal/) — a tool similar to Morse/REBL th
 
 Replicant comes in 2 parts: [client](https://github.com/clojure/data.alpha.replicant-client) and [server](https://github.com/clojure/data.alpha.replicant-server). The idea is that you run replicant server in the process you want to inspect, and use replicant client in a tool like Morse or Reveal to interact with the server. Together, they allow inspecting remote objects as if they are local. The client library is JVM-only, but in principle there is a protocol on top of eval and edn that can be implemented in another Clojure dialect.
 
-Replicant server is a prepl they "remotifes" objects when responding. For example, if I request `*ns*`, it will respond with a following EDN: 
+Replicant server is a prepl that "remotifes" objects when responding. For example, if I request `*ns*`, it will respond with a following EDN: 
 ```clj
 #r/object {:klass clojure.lang.Namespace, 
            :ref #r/id #uuid "fd88d9ab-42ce-492a-a6ee-3b3ae2c1e152"}
