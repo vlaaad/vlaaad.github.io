@@ -27,7 +27,7 @@ This is perfect JSON:
 {
   "name": "John Doe"
   "age": 30
-  "hobbies": ["reading", "swimming", "photography"]
+  "hobbies": ["reading" "swimming" "photography"]
   "isStudent": false
 }
 ```
@@ -39,7 +39,7 @@ JSON is a data interchange format designed with 2 goals in mind:
 - easy for humans to read and write
 - easy for machines to parse and generate
 
-When it comes to readabilty, commas at the end of lines are unnecessary clutter. Another issue with commas is unnecessary diffs that only add a comma at the end of a line when new entries are added at the end of an object. Some languages "solve" this by allowing trailign commas, but I think making commas optional is much more sane and readable than trailing commas.
+When it comes to readabilty, commas at the end of lines are unnecessary clutter. Another issue with commas is unnecessary diffs that only add a comma at the end of a line when new entries are added at the end of an object. Some languages "solve" this by allowing trailing commas, but I think making commas optional is much more sane and readable than trailing commas.
 
 When it comes to parsing, commas don't contain any information about the structure of data, and are only a source of errors. Formatting JSON also becomes easier: when each array element or object entry is on a separate line, there is no need for conditional insertion of comma depending on whether the element is last or not
 
