@@ -60,6 +60,7 @@ To try Reveal Pro:
     <a href="/reveal/feature/ref-watchers" class="pricing-feature pricing-col1 pricing-row7"><img src="/assets/reveal/watch.png">Ref watchers</a>
     <a href="/reveal/feature/charts" class="pricing-feature pricing-col2 pricing-row7"><img src="/assets/reveal/charts.png">Charts</a>
     <a href="/reveal/feature/table" class="pricing-feature pricing-col1 pricing-row8"><img src="/assets/reveal/tables.png">Table view</a>
+    <a href="/reveal/feature/memory-tree" class="pricing-feature pricing-col2 pricing-row8"><img src="/assets/reveal/memory.png">Memory tree</a>
     <div class="pricing-col3 pricing-row1">
         <h2>Pro</h2>
         <p>Everything in Free, plus:</p>
