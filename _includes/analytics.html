@@ -1,0 +1,13 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch("https://analytics.vlaaad.dev", {
+            method: 'POST',
+            body: JSON.stringify({
+                app: "vlaaad.github.io",
+                event: "page_view",
+                url: window.location.href,
+                referrer: document.referrer
+            })
+        })
+    });
+</script>
