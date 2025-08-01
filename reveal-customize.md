@@ -19,7 +19,7 @@ Reveal is customized using `vlaaad.reveal.prefs` java property that defines and 
 Example:
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.284"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.286"}}}' \
 -J-Dvlaaad.reveal.prefs='{:font-family "Consolas" :font-size 15}' \
 -X vlaaad.reveal/repl
 ```
