@@ -1,3 +1,4 @@
+{% if jekyll.environment == "production" %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         fetch("https://analytics.vlaaad.dev", {
@@ -12,3 +13,4 @@
         })
     });
 </script>
+{% endif %}
