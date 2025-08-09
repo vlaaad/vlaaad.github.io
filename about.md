@@ -13,6 +13,7 @@ permalink: /about/
 .profile img {
   max-width: 418px;
   height: auto;
+  flex-shrink: 0;
 }
 
 @media (max-width: 900px) {
@@ -20,6 +21,9 @@ permalink: /about/
     flex-direction: column;
     align-items: center;
     text-align: left;
+  }
+  .profile img {
+    max-width: 100%;
   }
 }
 </style>
