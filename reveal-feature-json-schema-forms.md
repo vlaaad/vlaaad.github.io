@@ -3,7 +3,7 @@ layout: reveal
 title: "Reveal Pro: JSON Schema and Vega(-Lite) Forms"
 permalink: /reveal/feature/json-schema-forms
 ---
-Reveal Pro's Forms allow you to convert data structure specifications to UI input components for creating these data structures. This is a generic and multi-purpose tool that supports Clojure spec and JSON Schema out of the box and can be extended to other data specification libraries.
+Reveal Pro's [Forms](/reveal/feature/spec-forms) allow you to convert data structure specifications to UI input components for creating these data structures. This is a generic and multi-purpose tool that supports Clojure spec and JSON Schema out of the box and can be extended to other data specification libraries.
 
 Since [Vega(-Lite)](https://vega.github.io/) provides JSON Schemas that are supported by Forms, it is very useful to explore [vega visualizations](/reveal/feature/vega) using Form views:
 

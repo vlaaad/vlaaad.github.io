@@ -36,3 +36,5 @@ Forms are available either with:
    :form (form/spec-alpha-form `ns)}
   ```
   After evaluating this map, you can select `view` action on it in Reveal Pro window to see the form. Tip: see [Interacting with Reveal from code](/reveal/#interacting-with-reveal-from-code) to be able to immediately open the form without having to interact with Reveal window.
+
+Reveal provides forms for [JSON schemas](/reveal/feature/json-schema-forms), including built-in Vega(-Lite) forms.
