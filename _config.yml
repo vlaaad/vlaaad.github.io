@@ -22,7 +22,7 @@ plugins:
 
 # Permalinks
 permalink: /:title
-paginate: 5
+paginate: 15
 
 # Excludes
 exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]
