@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MCP tools with dependent&nbsp;types"
+title: "MCP tools with dependent types"
 description: "After some experimenting with writing an MCP server and using LLM APIs with structured output, I think there is room for improvement for the MCP specification."
 ---
 
@@ -76,4 +76,5 @@ As I said earlier, this is possible to do if you are building a custom AI chat i
   }
 }
 ```
+
 Perhaps, MCP should support something like that?
