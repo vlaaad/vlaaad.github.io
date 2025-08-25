@@ -103,7 +103,9 @@ clj \
 When using Cursive with Clj, it's usually enough to launch a Reveal REPL using a following "Clojure REPL - Local" run configuration:
 - Type of REPL to run: clojure.main;
 - How to run it: Run with Deps: `-A:reveal`;
-- Parameters: `-m vlaaad.reveal repl` (or as a sticker window: `-m vlaaad.reveal repl :always-on-top true`).
+- Parameters: `-m vlaaad.reveal repl :infer-ns true` (or as a sticker window: `-m vlaaad.reveal repl :infer-ns true :always-on-top true`).
+
+Note: `:infer-ns true` parameter will automatically switch the REPL namespace to that of a current file, which is very useful. This is something nREPL-based setups do automatically, but it can also work in a socket REPL with Cursive that sends file and line/column metadata on evaluated forms.
 
 ## Cursive + Clj + remote REPL
 
