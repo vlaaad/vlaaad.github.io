@@ -27,7 +27,7 @@ Here are the steps needed to start using Reveal Pro:
 
    ```sh
    $ clj \
-     -Sdeps '{:deps {dev.vlaaad/reveal-pro {:mvn/version "1.3.383"}}}' \
+     -Sdeps '{:deps {dev.vlaaad/reveal-pro {:mvn/version "1.3.386"}}}' \
      -X vlaaad.reveal/repl
    ```
 
