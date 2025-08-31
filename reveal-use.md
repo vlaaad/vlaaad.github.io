@@ -18,7 +18,7 @@ It is a repl that wraps `clojure.main/repl` with additional support for `:repl/q
 
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.295"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.296"}}}' \
 -X vlaaad.reveal/repl :always-on-top true
 # Reveal sticker window appears
 Clojure 1.10.1
@@ -31,7 +31,7 @@ This prepl works like `clojure.core.server/io-prepl`. Its purpose is to be run i
 
 ```sh
 clj \
--Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.295"}}}' \
+-Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.296"}}}' \
 -J-Dclojure.server.reveal='{:port 5555 :accept vlaaad.reveal/io-prepl}'
 ```
 Now you can connect to this process using any socket repl and it will show a new Reveal sticker (always-on-top) window for every connection:
@@ -58,7 +58,7 @@ Example:
 2. Connect to that prepl using Reveal:
    ```
    clj \
-   -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.295"}}}' \
+   -Sdeps '{:deps {vlaaad/reveal {:mvn/version "1.3.296"}}}' \
    -X vlaaad.reveal/remote-prepl :always-on-top true :port 50505
    # at this point, 2 things happen:
    # 1. Browser window with cljs prepl appears
