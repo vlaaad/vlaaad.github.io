@@ -33,7 +33,7 @@ assoc
 Why did I use this representation? Two reasons:
 1. It is round-trippable. I can copy a data structure with a function from the Reveal output pane into REPL, and it will evaluate to the same function without problem.
 2. Due to syntax highlighting, it is visually distinct from symbol `clojure.core/assoc`:
-   <img src="/assets/tripping-around-repl/assoc.png" style="max-width: 398px;">
+   <img src="/assets/tripping-around-repl/assoc.png" style="width: 398px;">
 
 Did you notice `#_0x4a9486c0` after the function name? This is a new addition to the Reveal function printer, available in [Reveal 1.3.296](https://clojars.org/vlaaad/reveal/versions/1.3.296). It fixes a problem I was tripping over from time to time.
 
@@ -44,7 +44,7 @@ Default Clojure representation of a function includes an important bit of inform
 - Using objects with unique identity as keys requires care.
 
 One particular gotcha is regex: instances of `java.util.regex.Pattern` do **NOT** define value equality and hash code. This means using them as keys is dangerous. This is why Reveal also shows regexes with their identity:
-<img src="/assets/tripping-around-repl/regex.png" style="max-width: 397px;">
+<img src="/assets/tripping-around-repl/regex.png" style="width: 397px;">
 
 Yes, this code is not even a duplicate key error:
 ```clj
@@ -60,7 +60,7 @@ You might ask, why use `#_0xcafebabe` to show identity? Well, that's because it 
 
 Syntax highlighting adds color — an extra dimension to printed data that allows for differentiating related things when the text is the same. Earlier, I showed how the symbol `clojure.core/assoc` and the function `clojure.core/assoc` use the same text, but different colors. But there is more! If we can use colors to differentiate symbols and functions, we can use them to differentiate objects and Clojure forms that produce such objects when evaluated. What kinds of objects? Refs! Futures! Files! Other stuff!
 
-<img src="/assets/tripping-around-repl/objects.png" style="max-width: 556px;">
+<img src="/assets/tripping-around-repl/objects.png" style="width: 556px;">
 
 When dogfooding this feature, I found it important to use a separate color for parens, making them grey so they are not mistaken for collections (which also use parens — of yellow color). I think it's very useful!
 
