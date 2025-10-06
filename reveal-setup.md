@@ -21,8 +21,8 @@ The only difference between Reveal Free and Reveal Pro in terms of setting it up
 
 | Edition | Lib                     | Version   |
 |---------|-------------------------|-----------|
-| Free    | `vlaaad/reveal`         | `1.3.311` |
-| Pro     | `dev.vlaaad/reveal-pro` | `1.3.406` |
+| Free    | `vlaaad/reveal`         | `1.3.312` |
+| Pro     | `dev.vlaaad/reveal-pro` | `1.3.408` |
 
 # Build tool
 
@@ -33,7 +33,7 @@ The best way to make Reveal available in your project is to add a dependency on 
 Edit your `~/.clojure/deps.edn` to contain the following:
 
 ```clj
-{:aliases {:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.311"}}
+{:aliases {:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.312"}}
                     ;; optional: preferences
                     :jvm-opts ["-Dvlaaad.reveal.prefs={:theme,:light}"]}}}
 ```
@@ -54,7 +54,7 @@ true ;; system properties are shown in the tap log
 Edit your `~/.lein/profiles.clj` to contain the following:
 
 ```clj
-{:repl {:dependencies [[vlaaad/reveal "1.3.311"]]
+{:repl {:dependencies [[vlaaad/reveal "1.3.312"]]
         ;; optional: preferences
         :jvm-opts ["-Dvlaaad.reveal.prefs={:theme,:light}"]}}
 ```
@@ -76,7 +76,7 @@ true ;; system properties are shown in the tap log
 
 Reveal provides nREPL middleware that can be enabled in `~/.lein/profiles.clj`: 
 ```clj
-{:repl {:dependencies [[vlaaad/reveal "1.3.311"]]
+{:repl {:dependencies [[vlaaad/reveal "1.3.312"]]
         :repl-options {:nrepl-middleware [vlaaad.reveal.nrepl/middleware]}}}
 ```
 This way, running `lein repl` will automatically open a Reveal output window and all evaluations will be shown in the window. This setup works well with IDE plugins like:
