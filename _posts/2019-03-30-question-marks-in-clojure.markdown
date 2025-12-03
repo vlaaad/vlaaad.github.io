@@ -6,11 +6,11 @@ date: 2019-03-30
 permalink: /2019-03-30/question-marks-in-clojure
 ---
 
-Clojure's flexible syntax allows special characters such `?`, `!` or `*` to be a part of variable names, which gives ability to enhance symbols with additional meaning, but I regularly see that `?`-suffixes get misused, so I decided to make a list of dos and don'ts regarding question marks to clear that up.
+Clojure's flexible syntax allows special characters such `?`, `!` or `*` to be a part of variable names, which gives the ability to enhance symbols with additional meaning, but I regularly see that `?`-suffixes get misused, so I decided to make a list of dos and don'ts regarding question marks to clear that up.
 
 ## Do: Predicates
 
-By convention question mark suffix should be used for predicates only. It is like that in clojure core, and, if you like Appeal to Authority arguments, Stuart Holloway [also said so](https://groups.google.com/d/msg/clojure/IdSGKwTYqPU/QC0udWGuLMQJ). Example:
+By convention question mark suffix should be used for predicates only. It is like that in Clojure core, and, if you like Appeal to Authority arguments, Stuart Holloway [also said so](https://groups.google.com/d/msg/clojure/IdSGKwTYqPU/QC0udWGuLMQJ). Example:
 
 {% highlight clojure %}
 (some? maybe-sheep)
@@ -18,7 +18,7 @@ By convention question mark suffix should be used for predicates only. It is lik
 
 ## Don't: Booleans
 
-Vars and bindings containing boolean values should not end with question mark:
+Vars and bindings containing boolean values should not end with a question mark:
 
 {% highlight clojure %}
 (let [disabled? (empty? options)]
@@ -27,17 +27,17 @@ Vars and bindings containing boolean values should not end with question mark:
     (do-something options)))
 {% endhighlight %}
 
-It's simple to understand what's wrong here: `disabled?` is not a predicate. Predicate is a question, calling a predicate is asking a question and getting answer, and `disabled?` in this case is an answer. Answer to the question is affirmative: we know for sure that it is either `true` or `false`, so there is nothing questionable here. Also, using question mark here introduces confusion, because now we have symbols ending with `?` that are either functions or booleans.
+It's simple to understand what's wrong here: `disabled?` is not a predicate. A predicate is a question; calling a predicate is asking a question and getting an answer, and `disabled?` in this case is an answer. The answer to the question is affirmative: we know for sure that it is either `true` or `false`, so there is nothing questionable here. Also, using a question mark here introduces confusion, because now we have symbols ending with `?` that are either functions or booleans.
 
 ## Don't: Keywords
 
-With keywords situation starts to get blurry, because they can be invoked as functions, so it is tempting to put question mark at the end of a keyword:
+With keywords situation starts to get blurry, because they can be invoked as functions, so it is tempting to put a question mark at the end of a keyword:
 
 {% highlight clojure %}
 (filter :online? users) ;; okay?..
 {% endhighlight %}
 
-I thinks this is a bad idea, because even though being a function is very valuable for keywords, their main use case is being identifiers for data. Using keywords as identifiers is affirmative, there are no questions here, only assertions of facts:
+I think this is a bad idea, because even though being a function is very valuable for keywords, their main use case is being identifiers for data. Using keywords as identifiers is affirmative; there are no questions here, only assertions of facts:
 
 {% highlight clojure %}
 (def system-user
@@ -45,7 +45,7 @@ I thinks this is a bad idea, because even though being a function is very valuab
    :online? true}) ;; meh
 {% endhighlight %}
 
-Also, if you destructure map with such keys, you will again end up in a situation where you have a boolean binding ending with `?`:
+Also, if you destructure a map with such keys, you will again end up in a situation where you have a boolean binding ending with `?`:
 
 {% highlight clojure %}
 (let [{:keys [login online?]} user]
@@ -54,11 +54,11 @@ Also, if you destructure map with such keys, you will again end up in a situatio
                " ●"))])
 {% endhighlight %}
 
-In my experience I've seen more uses of such keywords as data identifiers in destructurings than as predicates.
+In my experience, I've seen more uses of such keywords as data identifiers in destructurings than as predicates.
 
 ## Rarely Do: Keywords
 
-I think an exception here could be a keyword that identifies predicate function:
+I think an exception here could be a keyword that identifies a predicate function:
 
 {% highlight clojure %}
 {:type :goblin
