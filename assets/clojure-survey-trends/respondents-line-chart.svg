@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">State of Clojure survey respondents by year</title>
+  <desc id="desc">Line chart for 2010 through 2025 generated from source numbers. 2017 has no point.</desc>
+  <style>
+    .axis { stroke: #222222; stroke-width: 1.2; }
+    .grid { stroke: #e8e8e8; stroke-width: 1; }
+    .line { fill: none; stroke: #222222; stroke-width: 2; }
+    .dot { fill: #222222; }
+    .tick { fill: #333333; font: 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .ylabel { fill: #333333; font: 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  </style>
+  <line class="grid" x1="60.0" y1="340.0" x2="840.0" y2="340.0" />
+  <line class="grid" x1="60.0" y1="293.3" x2="840.0" y2="293.3" />
+  <line class="grid" x1="60.0" y1="246.7" x2="840.0" y2="246.7" />
+  <line class="grid" x1="60.0" y1="200.0" x2="840.0" y2="200.0" />
+  <line class="grid" x1="60.0" y1="153.3" x2="840.0" y2="153.3" />
+  <line class="grid" x1="60.0" y1="106.7" x2="840.0" y2="106.7" />
+  <line class="grid" x1="60.0" y1="60.0" x2="840.0" y2="60.0" />
+  <line class="axis" x1="60.0" y1="60.0" x2="60.0" y2="340.0" />
+  <line class="axis" x1="60.0" y1="340.0" x2="840.0" y2="340.0" />
+  <text class="ylabel" x="52.0" y="344.0" text-anchor="end">0</text>
+  <text class="ylabel" x="52.0" y="297.3" text-anchor="end">500</text>
+  <text class="ylabel" x="52.0" y="250.7" text-anchor="end">1000</text>
+  <text class="ylabel" x="52.0" y="204.0" text-anchor="end">1500</text>
+  <text class="ylabel" x="52.0" y="157.3" text-anchor="end">2000</text>
+  <text class="ylabel" x="52.0" y="110.7" text-anchor="end">2500</text>
+  <text class="ylabel" x="52.0" y="64.0" text-anchor="end">3000</text>
+  <line class="axis" x1="60.0" y1="340.0" x2="60.0" y2="345.0" />
+  <text class="tick" x="60.0" y="360.0" text-anchor="middle">2010</text>
+  <line class="axis" x1="112.0" y1="340.0" x2="112.0" y2="345.0" />
+  <text class="tick" x="112.0" y="360.0" text-anchor="middle">2011</text>
+  <line class="axis" x1="164.0" y1="340.0" x2="164.0" y2="345.0" />
+  <text class="tick" x="164.0" y="360.0" text-anchor="middle">2012</text>
+  <line class="axis" x1="216.0" y1="340.0" x2="216.0" y2="345.0" />
+  <text class="tick" x="216.0" y="360.0" text-anchor="middle">2013</text>
+  <line class="axis" x1="268.0" y1="340.0" x2="268.0" y2="345.0" />
+  <text class="tick" x="268.0" y="360.0" text-anchor="middle">2014</text>
+  <line class="axis" x1="320.0" y1="340.0" x2="320.0" y2="345.0" />
+  <text class="tick" x="320.0" y="360.0" text-anchor="middle">2015</text>
+  <line class="axis" x1="372.0" y1="340.0" x2="372.0" y2="345.0" />
+  <text class="tick" x="372.0" y="360.0" text-anchor="middle">2016</text>
+  <line class="axis" x1="424.0" y1="340.0" x2="424.0" y2="345.0" />
+  <text class="tick" x="424.0" y="360.0" text-anchor="middle">2017</text>
+  <line class="axis" x1="476.0" y1="340.0" x2="476.0" y2="345.0" />
+  <text class="tick" x="476.0" y="360.0" text-anchor="middle">2018</text>
+  <line class="axis" x1="528.0" y1="340.0" x2="528.0" y2="345.0" />
+  <text class="tick" x="528.0" y="360.0" text-anchor="middle">2019</text>
+  <line class="axis" x1="580.0" y1="340.0" x2="580.0" y2="345.0" />
+  <text class="tick" x="580.0" y="360.0" text-anchor="middle">2020</text>
+  <line class="axis" x1="632.0" y1="340.0" x2="632.0" y2="345.0" />
+  <text class="tick" x="632.0" y="360.0" text-anchor="middle">2021</text>
+  <line class="axis" x1="684.0" y1="340.0" x2="684.0" y2="345.0" />
+  <text class="tick" x="684.0" y="360.0" text-anchor="middle">2022</text>
+  <line class="axis" x1="736.0" y1="340.0" x2="736.0" y2="345.0" />
+  <text class="tick" x="736.0" y="360.0" text-anchor="middle">2023</text>
+  <line class="axis" x1="788.0" y1="340.0" x2="788.0" y2="345.0" />
+  <text class="tick" x="788.0" y="360.0" text-anchor="middle">2024</text>
+  <line class="axis" x1="840.0" y1="340.0" x2="840.0" y2="345.0" />
+  <text class="tick" x="840.0" y="360.0" text-anchor="middle">2025</text>
+  <polyline class="line" points="60.0,294.5 112.0,277.5 164.0,211.9 216.0,241.0 268.0,215.0 320.0,111.8 372.0,114.1 476.0,123.0 528.0,110.3 580.0,104.9 632.0,104.1 684.0,117.7 736.0,175.6 788.0,195.4 840.0,195.8" />
+  <circle class="dot" cx="60.0" cy="294.5" r="2.8" />
+  <circle class="dot" cx="112.0" cy="277.5" r="2.8" />
+  <circle class="dot" cx="164.0" cy="211.9" r="2.8" />
+  <circle class="dot" cx="216.0" cy="241.0" r="2.8" />
+  <circle class="dot" cx="268.0" cy="215.0" r="2.8" />
+  <circle class="dot" cx="320.0" cy="111.8" r="2.8" />
+  <circle class="dot" cx="372.0" cy="114.1" r="2.8" />
+  <circle class="dot" cx="476.0" cy="123.0" r="2.8" />
+  <circle class="dot" cx="528.0" cy="110.3" r="2.8" />
+  <circle class="dot" cx="580.0" cy="104.9" r="2.8" />
+  <circle class="dot" cx="632.0" cy="104.1" r="2.8" />
+  <circle class="dot" cx="684.0" cy="117.7" r="2.8" />
+  <circle class="dot" cx="736.0" cy="175.6" r="2.8" />
+  <circle class="dot" cx="788.0" cy="195.4" r="2.8" />
+  <circle class="dot" cx="840.0" cy="195.8" r="2.8" />
+</svg>
