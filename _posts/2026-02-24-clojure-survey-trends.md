@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "State of Clojure surveys"
-description: "I looked at response rate over time"
+description: "I looked at response rate over time and found that worrying trends seem to be easing"
 ---
 
 I checked the `Previous Years` links in the latest [State of Clojure survey post](https://clojure.org/news/2026/02/18/state-of-clojure-2025#previous) and wrote down respondent counts by year.
